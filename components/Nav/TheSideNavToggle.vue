@@ -20,6 +20,7 @@
   justify-content: space-around;
   height: 50%;
   width: 25px;
+  min-width: 48px;
   cursor: pointer;
   padding-right: 1rem;
 }

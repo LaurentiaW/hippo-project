@@ -91,38 +91,32 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .top-bar {
   width: 100%;
-  background-color: rgba(34, 51, 59, 0.54);
-  background-color: var(--comp-clr);
-  color: var(--white);
-}
+  background-color: var(--grey);
+  color: var(--dark-grey);
 
-.top-bar-wrapper {
-  max-width: 1000px;
-  margin: auto;
-}
+  a {
+    text-decoration: none;
+    color: var(--dark-grey);
+    font-weight: normal;
+    font-style: normal;
+  }
 
-.top-bar-wrapper > ul {
-  padding: 0.5rem 1rem;
-  margin: 0;
-  font-size: 0.75rem;
-}
+  span {
+    display: none;
+  }
 
-.top-bar ul li:last-child {
-  padding: 0.5rem 0 0;
-}
-
-.top-bar a {
-  text-decoration: none;
-  color: var(--white);
-  font-weight: normal;
-  font-style: normal;
-}
-
-.top-bar span {
-  display: none;
+  .top-bar-wrapper {
+    max-width: 1000px;
+    margin: auto;
+    > ul {
+      padding: 0.5rem 1rem;
+      margin: 0;
+      font-size: 1rem;
+    }
+  }
 }
 
 .header-container {

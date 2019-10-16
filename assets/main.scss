@@ -15,6 +15,8 @@
 
 $main-clr: var(--main-clr);
 $comp-clr: var(--comp-clr);
+$grey: var(--grey);
+$dark-grey: var(--dark-grey);
 
 /* Custom fonts */
 @font-face {
@@ -26,7 +28,7 @@ $comp-clr: var(--comp-clr);
 /*------------  Global   -----------*/
 
 body {
-  border: 10px solid #ccc;
+  border: 10px solid white;
   min-height: 100vh;
   font-family: 'Roboto Condensed', sans-serif;
   font-size: 16px;
@@ -87,6 +89,10 @@ a:visited {
   color: $comp-clr;
   text-decoration: none;
   transition: 0.3s all ease;
+}
+
+ul li {
+  list-style: none;
 }
 
 button,
