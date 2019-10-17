@@ -1,11 +1,18 @@
 <template>
-  <main>
-    <h1>home of the hippo</h1>
-  </main>
+  <div>
+    <AppHero />
+    <main></main>
+  </div>
 </template>
 
 <script>
-export default {}
+import AppHero from '@/components/AppHero.vue'
+
+export default {
+  components: {
+    AppHero
+  }
+}
 </script>
 
 <style lang="scss" scoped></style>

@@ -3,20 +3,20 @@
     <TheHeader @sidenavToggle="displaySidenav = !displaySidenav" />
     <TheSideNav :show="displaySidenav" @close="displaySidenav = false" />
     <nuxt />
-    <TheFooter />
+    <AppFooter />
   </div>
 </template>
 
 <script>
 import TheHeader from '@/components/Nav/TheHeader'
 import TheSideNav from '@/components/Nav/TheSideNav'
-import TheFooter from '@/components/TheFooter'
+import AppFooter from '@/components/AppFooter'
 
 export default {
   components: {
     TheHeader,
     TheSideNav,
-    TheFooter
+    AppFooter
   },
   data() {
     return {

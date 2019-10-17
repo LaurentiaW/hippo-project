@@ -114,7 +114,7 @@ export default {
     > ul {
       padding: 0.5rem 1rem;
       margin: 0;
-      font-size: 1rem;
+      font-size: 0.875rem;
     }
   }
 }
