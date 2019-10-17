@@ -1,16 +1,20 @@
 <template>
   <div>
     <AppHero />
-    <main></main>
+    <main>
+      <AppIndustries />
+    </main>
   </div>
 </template>
 
 <script>
 import AppHero from '@/components/AppHero.vue'
+import AppIndustries from '@/components/AppIndustries.vue'
 
 export default {
   components: {
-    AppHero
+    AppHero,
+    AppIndustries
   }
 }
 </script>
