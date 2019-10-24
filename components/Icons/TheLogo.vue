@@ -1,6 +1,6 @@
 <template>
   <div class="logo">
-    <svg class="icon" width="200" height="150" viewbox="100 50 450 450">
+    <svg class="icon" width="82.63" height="68" viewbox="100 50 450 450">
       <!-- <svg class="icon"> -->
       <!-- <use :id="name" xlink:href="#logo" /> -->
       <use :id="name" xlink:href="@/assets/icons/icon-logo.svg#icon-logo"></use>

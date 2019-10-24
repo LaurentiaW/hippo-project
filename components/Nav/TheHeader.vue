@@ -5,19 +5,37 @@
         <ul>
           <li>
             <span>
-              <a href="https://wwww.hazletonpumps.co.za"
+              <a href="https://www.hazletonpumps.co.za" target="_blank"
                 >A Hazleton Pumps Intl Brand</a
               ></span
             >
           </li>
           <li>
-            Phone:
-            <a href="tel:+27(0)12-666-8203">+27(0)12-666-8203</a>
+            <a href="tel:+27(0)12-666-8203" class="icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <use xlink:href="/svg/ui-icons/call.svg#icon-call"></use>
+              </svg>
+              +27(0)12-666-8203</a
+            >
           </li>
           <li>
-            Email Address:
-            <a href="mailto:info@hipposlurrypumps.com"
-              >info@hipposlurrypumps.com</a
+            <a href="mailto:info@hipposlurrypumps.com" class="icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <use xlink:href="/svg/ui-icons/email.svg#icon-email"></use>
+              </svg>
+              info@hipposlurrypumps.com</a
             >
           </li>
         </ul>
@@ -94,18 +112,14 @@ export default {
 <style lang="scss" scoped>
 .top-bar {
   width: 100%;
-  background-color: var(--grey);
-  color: var(--dark-grey);
+  background-color: var(--comp-clr);
+  color: var(--white);
 
   a {
     text-decoration: none;
-    color: var(--dark-grey);
+    color: var(--white);
     font-weight: normal;
     font-style: normal;
-  }
-
-  span {
-    display: none;
   }
 
   .top-bar-wrapper {
@@ -115,6 +129,23 @@ export default {
       padding: 0.5rem 1rem;
       margin: 0;
       font-size: 0.875rem;
+      display: flex;
+      justify-content: space-between;
+      li {
+        &:first-child {
+          display: none;
+          @media (min-width: 768px) {
+            display: inline;
+          }
+        }
+      }
+      .icon {
+        display: flex;
+        align-items: center;
+        > svg {
+          margin: 0 0.25rem 0 0;
+        }
+      }
     }
   }
 }
@@ -149,17 +180,8 @@ export default {
 }
 
 @media (min-width: 768px) {
-  .top-bar-wrapper > ul {
-    display: flex;
-    justify-content: space-between;
-  }
-
   .top-bar ul li:last-child {
     padding: 0;
-  }
-
-  .top-bar span {
-    display: inline-block;
   }
 
   .navigation-items {
