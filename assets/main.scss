@@ -7,8 +7,8 @@
   --light-yellow: #ffe8d1;
   --white: #ffffff;
   --black: #0c090d;
-  --grey: #d1d1d1;
-  --dark-grey: #22333b;
+  --grey: #7e7c7c;
+  --dark-grey: #474448;
   --form-width: 90%;
   --form-max-width: 600px;
   --bg-clr: #eeefed;
@@ -62,9 +62,9 @@ h1 {
   }
 }
 h2 {
-  font-size: 30px;
+  font-size: 16px;
   @media screen and (min-width: 993px) {
-    font-size: 45px;
+    font-size: 24px;
   }
 }
 

@@ -1,15 +1,17 @@
 <template>
-  <div class="grid">
+  <div class="flex">
     <article
       v-for="industry in industries"
       :key="industry.id"
-      class="industry-blok card"
+      class="industry-blok"
     >
       <div class="icon-wrapper">
         <img :src="industry.img" alt="industry.title" />
       </div>
-      <h3>{{ industry.title }}</h3>
-      <p>{{ industry.text }}</p>
+      <div class="txt-wrapper">
+        <h4>{{ industry.title }}</h4>
+        <p>{{ industry.text }}</p>
+      </div>
     </article>
   </div>
 </template>
@@ -64,33 +66,41 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-gap: 1rem;
-  margin: 1rem 0;
+.flex {
+  @media (min-width: 768px) {
+    display: flex;
+  }
 }
 
-.industry-blok {
+article {
+  width: 50%;
   display: flex;
-  flex-wrap: nowrap;
-  flex-direction: column;
-  align-items: center;
-  background-color: var(--grey);
-  padding: 1rem;
-  margin: 0;
 }
 
-h3 {
+p {
+  display: none;
+  @media (min-width: 768px) {
+    display: inline;
+  }
+}
+
+h4 {
   color: var(--comp-clr);
+  font-size: 1rem;
 }
 .industry-blok > * {
-  text-align: center;
 }
 
 .icon-wrapper {
-  width: 60px;
-  height: 60px;
-  margin: 1rem;
+  width: 42px;
+  height: 42px;
+  background-color: rgba(126, 124, 124, 0.54);
+  position: relative;
+  margin: 0 0.5rem 0 0;
+  img {
+    height: 41px;
+    position: absolute;
+    right: -0.5rem;
+  }
 }
 </style>

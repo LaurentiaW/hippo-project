@@ -1,21 +1,28 @@
 <template>
-  <div class="grid">
-    <article
-      v-for="industry in industries"
-      :key="industry.id"
-      class="industry-blok card"
-    >
-      <div class="icon-wrapper">
-        <img :src="industry.img" alt="industry.title" />
-      </div>
-      <h3>{{ industry.title }}</h3>
-      <p>{{ industry.text }}</p>
-    </article>
+  <div>
+    <AppSectionHeading />
+    <div class="grid">
+      <article
+        v-for="industry in industries"
+        :key="industry.id"
+        class="industry-blok card"
+      >
+        <div class="icon-wrapper">
+          <img :src="industry.img" alt="industry.title" />
+        </div>
+        <h3>{{ industry.title }}</h3>
+        <!-- <p>{{ industry.text }}</p> -->
+      </article>
+    </div>
   </div>
 </template>
 
 <script>
+import AppSectionHeading from '@/components/AppSectionHeading.vue'
 export default {
+  components: {
+    AppSectionHeading
+  },
   data() {
     return {
       industries: [
@@ -63,7 +70,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .grid {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
@@ -83,7 +90,15 @@ export default {
 }
 
 .icon-wrapper {
-  width: 60px;
-  height: 60px;
+  width: 42px;
+  height: 42px;
+  background-color: var(--dark-grey);
+  position: relative;
+  img {
+    height: 41px;
+    width: auto;
+    position: absolute;
+    right: 0;
+  }
 }
 </style>
