@@ -1,10 +1,14 @@
 <template>
   <div class="logo">
-    <svg class="icon" width="82.63" height="68" viewbox="100 50 450 450">
-      <!-- <svg class="icon"> -->
-      <!-- <use :id="name" xlink:href="#logo" /> -->
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      :width="width"
+      :height="height"
+      viewBox="0 0 83.784 68"
+      class="icon"
+    >
       <use :id="name" xlink:href="@/assets/icons/icon-logo.svg#icon-logo"></use>
-      <!-- <use :id="name" xlink:href="@/static/svg/logo.svg#logo" /> -->
     </svg>
   </div>
 </template>
@@ -15,15 +19,15 @@ export default {
     name: {
       type: String,
       default: 'brand-logo'
+    },
+    width: {
+      type: [Number, String],
+      default: 83.784
+    },
+    height: {
+      type: [Number, String],
+      default: 68
     }
-    // width: {
-    //   type: [Number, String],
-    //   default: 100
-    // },
-    // height: {
-    //   type: [Number, String],
-    //   default: 100
-    // }
   }
 }
 </script>

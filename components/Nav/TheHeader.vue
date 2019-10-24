@@ -42,7 +42,7 @@
       </div>
     </div>
     <div class="header-container">
-      <header class="the-header">
+      <header class="the-header container">
         <TheSideNavToggle @toggle="$emit('sidenavToggle')" />
         <!-- <TheSideNavToggle @toggle="$emit('sidenavToggle')" /> -->
         <div class="logo">
@@ -60,6 +60,10 @@
             />
           </ul>
         </div>
+        <button class="request-quote">
+          request <br />
+          a quote
+        </button>
       </header>
     </div>
   </div>
@@ -126,7 +130,7 @@ export default {
     max-width: 1000px;
     margin: auto;
     > ul {
-      padding: 0.5rem 1rem;
+      padding: 0.5rem 0.25rem;
       margin: 0;
       font-size: 0.875rem;
       display: flex;
@@ -151,20 +155,33 @@ export default {
 }
 
 .header-container {
-  /* height: 60px; */
   width: 100%;
+  background-color: var(--white);
+}
+
+.request-quote {
+  font-family: 'Roboto Condensed', sans-serif;
+  position: absolute;
+  right: 1rem;
+  padding-left: 2.5rem;
+  font-size: 14px;
+  clip-path: circle(88.6% at 90% 90%);
+  @media (min-width: 768px) {
+    position: unset;
+  }
 }
 
 .the-header {
-  /* height: 60px; */
-  max-width: 1000px;
-  margin: auto;
   z-index: 100;
   box-sizing: border-box;
-  padding: 1rem;
+  padding: 0.5rem 0 1rem;
   color: var(--main-clr);
   display: flex;
   align-items: center;
+  @media (min-width: 768px) {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+  }
 }
 
 .logo h1 {
@@ -191,10 +208,6 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-
-  .the-header {
-    justify-content: space-between;
   }
 }
 </style>

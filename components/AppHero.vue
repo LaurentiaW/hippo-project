@@ -1,21 +1,24 @@
 <template>
-  <div class="hero">
-    <div class="hero-img">
-      <slot name="img">
-        <img
-          src="/hero-hippo.jpg"
-          alt="A hippo - the animal that embodies the values of the Hippo Slurry Pump Range. Photo by Henning Borgersen on Unsplash"
-        />
+  <div class="hero container">
+    <h4>
+      <slot name="tag">
+        Hippo Slurry Pumps
       </slot>
-    </div>
-    <div class="hero-text">
-      <h2><slot name="message"> The Hippo Slurry Pump Range</slot></h2>
-      <h4>
-        <slot name="tagline">
-          CUSTOMISE TECHNOLOGY <span>|</span> INCOMPARABLE QUALITY</slot
-        >
-      </h4>
-    </div>
+      <span name="tag-pt">
+        <slot>
+          stands for
+        </slot>
+      </span>
+    </h4>
+    <h3>
+      <slot name="main">
+        CUSTOMISE TECHNOLOGY
+      </slot>
+      <br />
+      <slot name="main-pt">
+        INCOMPARABLE QUALITY
+      </slot>
+    </h3>
   </div>
 </template>
 
@@ -25,29 +28,13 @@ export default {}
 
 <style lang="scss" scoped>
 .hero {
-  height: 350px;
-  z-index: 1;
-  position: relative;
-  .hero-img {
-    img {
-      object-fit: cover;
-      -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-      filter: grayscale(100%);
-      width: 100%;
-      height: 350px;
-    }
-  }
-  .hero-text {
-    position: absolute;
-    bottom: 5%;
-    left: 0;
-    background-color: rgba(255, 255, 255, 0.54);
-    padding: 1rem;
-    @media screen and (min-width: 622px) {
-      white-space: nowrap;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: rgba(255, 255, 255, 0.8);
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+  h4 {
+    text-transform: uppercase;
+    color: var(--main-clr);
+    span {
+      color: var(--comp-clr);
     }
   }
 }

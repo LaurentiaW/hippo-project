@@ -2,21 +2,25 @@
   <div>
     <AppHero />
     <main>
-      <AppIndustries />
+      <!-- <AppIndustries /> -->
     </main>
   </div>
 </template>
 
 <script>
 import AppHero from '@/components/AppHero.vue'
-import AppIndustries from '@/components/AppIndustries.vue'
+// import AppIndustries from '@/components/AppIndustries.vue'
 
 export default {
   components: {
-    AppHero,
-    AppIndustries
+    AppHero
+    // AppIndustries
   }
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+main {
+  background-color: var(--white);
+}
+</style>

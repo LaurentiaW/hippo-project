@@ -1,13 +1,13 @@
 <template>
   <footer>
     <div class="container">
+      <h3 class="main">
+        CUSTOMISE TECHNOLOGY <span>|</span> INCOMPARABLE QUALITY
+      </h3>
       <div class="flex">
-        <TheLogo name="invert-logo" />
-        <h3 class="main">
-          CUSTOMISE TECHNOLOGY <span>|</span> INCOMPARABLE QUALITY
-        </h3>
+        <TheLogo height="43.4" width="52" />
+        <p>© 2019 Hippo Slurry Pumps</p>
       </div>
-      <p>© 2019 Hippo Slurry Pumps All Rights Reserved</p>
     </div>
   </footer>
 </template>
@@ -24,35 +24,48 @@ export default {
 
 <style lang="scss" scoped>
 footer {
-  padding: 1em;
-  background-color: var(--comp-clr);
-  background-image: linear-gradient(19deg, #1c2757 0%, #222a4c 100%);
-}
-.container {
-  width: 90%;
-  max-width: 1000px;
-  margin: auto;
-}
-.logo {
-  text-align: center;
+  padding: 1rem;
+  background-color: var(--white);
 }
 
 h3 {
-  color: var(--white);
-  font-size: 1.15rem;
+  font-size: 14px;
+  text-align: center;
+  text-align: center;
+  max-width: 13rem;
+  margin: auto;
+  @media screen and(min-width: 768px) {
+    max-width: unset;
+  }
+  span {
+    display: none;
+    @media screen and(min-width: 768px) {
+      display: inline;
+    }
+  }
 }
 p {
-  color: var(--white);
   font-size: 13px;
   font-family: 'Roboto Condensed', sans-serif;
+  margin: 0;
+  text-align: right;
 }
 
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 @media screen and(min-width: 768px) {
-  .flex {
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: baseline;
-    justify-content: space-between;
+  footer {
+    position: relative;
+    h3 {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
     .logo {
       text-align: right;
     }
