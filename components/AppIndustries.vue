@@ -88,7 +88,10 @@ export default {
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
+  @media (min-width: 350px) {
+    grid-template-columns: 1fr 1fr;
+  }
   grid-gap: 1rem;
 }
 
@@ -103,6 +106,11 @@ article {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+  @media (min-width: 768px) {
+    display: initial;
+    height: 100px;
+    max-width: 300px;
+  }
 }
 
 p {
@@ -115,8 +123,6 @@ p {
 h4 {
   color: var(--comp-clr);
   font-size: 1rem;
-}
-.industry-blok > * {
 }
 
 .icon-wrapper {

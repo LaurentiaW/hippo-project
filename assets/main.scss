@@ -6,7 +6,7 @@
   --pink: #f7b2bd;
   --light-yellow: #ffe8d1;
   --white: #ffffff;
-  --black: #0c090d;
+  --black: #020202;
   --grey: #7e7c7c;
   --dark-grey: #474448;
   --form-width: 90%;
@@ -19,6 +19,7 @@ $comp-clr: var(--comp-clr);
 $grey: var(--grey);
 $dark-grey: var(--dark-grey);
 $bg-clr: var(--bg-clr);
+$text-clr: var(--black);
 
 /* Custom fonts */
 @font-face {
@@ -41,7 +42,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
-  color: $comp-clr;
+  color: $text-clr;
 }
 
 h1,
@@ -208,6 +209,13 @@ section {
     padding-bottom: 0;
     margin-bottom: 0;
   }
+}
+
+.framed {
+  border: solid 1px var(--grey);
+  border-radius: 2px;
+  padding: 1rem;
+  background-color: var(--white);
 }
 
 .card {

@@ -2,7 +2,7 @@
   <div>
     <h2>
       <slot name="section-heading">
-        THE HIPPO SLURRY PUMP RANGE
+        HIPPO SLURRY PUMP RANGE
       </slot>
       <br />
       <slot name="sec-head-pt">
