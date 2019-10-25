@@ -16,4 +16,13 @@
 export default {}
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+div {
+  margin-bottom: 2rem;
+}
+
+h2 {
+  border-left: 4px solid var(--main-clr);
+  padding-left: 0.5rem;
+}
+</style>

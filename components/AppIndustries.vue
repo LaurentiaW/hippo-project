@@ -1,23 +1,37 @@
 <template>
-  <div class="flex">
-    <article
-      v-for="industry in industries"
-      :key="industry.id"
-      class="industry-blok"
-    >
-      <div class="icon-wrapper">
-        <img :src="industry.img" alt="industry.title" />
-      </div>
-      <div class="txt-wrapper">
-        <h4>{{ industry.title }}</h4>
-        <p>{{ industry.text }}</p>
-      </div>
-    </article>
-  </div>
+  <section>
+    <AppSectionHeading>
+      <template v-slot:section-heading>
+        OUR EXPERIENCE
+      </template>
+      <template v-slot:sec-head-pt>
+        INCLUDES
+      </template>
+    </AppSectionHeading>
+    <div class="grid">
+      <article
+        v-for="industry in industries"
+        :key="industry.id"
+        class="industry-blok"
+      >
+        <div class="icon-wrapper">
+          <img :src="industry.img" alt="industry.title" />
+        </div>
+        <div class="txt-wrapper">
+          <h4>{{ industry.title }}</h4>
+          <p>{{ industry.text }}</p>
+        </div>
+      </article>
+    </div>
+  </section>
 </template>
 
 <script>
+import AppSectionHeading from '@/components/AppSectionHeading.vue'
 export default {
+  components: {
+    AppSectionHeading
+  },
   data() {
     return {
       industries: [
@@ -72,9 +86,23 @@ export default {
   }
 }
 
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+}
+
 article {
-  width: 50%;
   display: flex;
+}
+
+.txt-wrapper {
+  overflow: hidden;
+  flex: 1;
+  height: 42px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 p {
@@ -96,7 +124,7 @@ h4 {
   height: 42px;
   background-color: rgba(126, 124, 124, 0.54);
   position: relative;
-  margin: 0 0.5rem 0 0;
+  margin: 0 1rem 0 0;
   img {
     height: 41px;
     position: absolute;
