@@ -4,6 +4,7 @@
     <main>
       <AppFeaturedProducts />
       <WorkProcess />
+      <Services />
       <AppIndustries />
     </main>
     <AppCallToAction />
@@ -16,6 +17,7 @@ import AppIndustries from '@/components/AppIndustries.vue'
 import AppFeaturedProducts from '@/components/Products/AppFeaturedProducts.vue'
 import AppCallToAction from '@/components/AppCallToAction.vue'
 import WorkProcess from '@/components/products/WorkProcess.vue'
+import Services from '@/components/products/Services.vue'
 
 export default {
   components: {
@@ -23,7 +25,8 @@ export default {
     AppIndustries,
     AppFeaturedProducts,
     AppCallToAction,
-    WorkProcess
+    WorkProcess,
+    Services
   }
 }
 </script>
