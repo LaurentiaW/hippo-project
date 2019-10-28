@@ -1,21 +1,21 @@
 <template>
   <div class="hero container">
     <h4>
-      <slot name="tag">
+      <slot name="yellow-tag">
         Hippo Slurry Pumps
       </slot>
-      <span name="tag-pt">
-        <slot>
+      <span>
+        <slot name="blue-tag">
           stands for
         </slot>
       </span>
     </h4>
     <h3>
-      <slot name="main">
+      <slot name="main-top">
         CUSTOMISE TECHNOLOGY
       </slot>
       <br />
-      <slot name="main-pt">
+      <slot name="main-bottom">
         INCOMPARABLE QUALITY
       </slot>
     </h3>

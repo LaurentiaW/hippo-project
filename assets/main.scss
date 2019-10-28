@@ -12,6 +12,7 @@
   --form-width: 90%;
   --form-max-width: 600px;
   --bg-clr: #eeefed;
+  --card-bg: #e8e3e3;
 }
 
 $main-clr: var(--main-clr);
@@ -123,8 +124,11 @@ img {
   width: 100%;
 }
 
-ul li {
-  list-style: none;
+ul {
+  padding: 0;
+  li {
+    list-style: none;
+  }
 }
 
 hr {
@@ -227,10 +231,6 @@ section {
   transition: box-shadow 0.25s;
   transition: box-shadow 0.25s, -webkit-box-shadow 0.25s;
   border-radius: 2px;
-  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
   .card-img {
     width: 150px;
     height: 150px;
@@ -279,4 +279,11 @@ section {
 .two-col .card:first-child,
 .two-col-lrg .card:first-child {
   margin-top: 0;
+}
+
+.shadow {
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
