@@ -1,29 +1,50 @@
 <template>
   <div class="hero container">
     <h4>
-      <slot name="yellow-tag">
-        Hippo Slurry Pumps
+      <slot :name="tagline">
+        {{ splitTag[0] }}
       </slot>
       <span>
-        <slot name="blue-tag">
-          stands for
-        </slot>
+        {{ splitTag[1] }}
       </span>
     </h4>
     <h3>
-      <slot name="main-top">
-        CUSTOMISE TECHNOLOGY
-      </slot>
-      <br />
-      <slot name="main-bottom">
-        INCOMPARABLE QUALITY
+      <slot :name="slogan">
+        {{ splitSlogan[0] }}
+        <br />
+        {{ splitSlogan[1] }}
       </slot>
     </h3>
   </div>
 </template>
 
 <script>
-export default {}
+import { strSplit } from '@/mixins/strSplit.js'
+export default {
+  props: {
+    tagline: {
+      type: String,
+      default: 'Hippo Slurry Pumps stands for'
+    },
+    slogan: {
+      type: String,
+      default: 'CUSTOMISE TECHNOLOGY INCOMPARABLE QUALITY'
+    }
+  },
+  method: {
+    strSplit(str) {
+      return strSplit(str)
+    }
+  },
+  computed: {
+    splitTag() {
+      return strSplit(this.$props.tagline)
+    },
+    splitSlogan() {
+      return strSplit(this.$props.slogan)
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

@@ -1,17 +1,13 @@
 <template>
   <div>
     <AppHero>
-      <template #yellow-tag>
-        THE HIPPO SLURRY
+      <template v-slot="{ tagline }">
+        {{ splitTag[0] }}
+        {{ splitTag[1] }}
       </template>
-      <template #blue-tag>
-        PUMP RANGE
-      </template>
-      <template #main-top>
-        THE AWARD WINNING
-      </template>
-      <template #main-bottom>
-        HEAVY DUTY PUMP RANGE
+      <template v-slot="{ slogan }">
+        {{ splitSlogan[0] }}
+        {{ splitSlogan[1] }}
       </template>
     </AppHero>
     <main>
@@ -50,6 +46,7 @@
         </div>
       </section>
     </main>
+    <AppCallToAction />
   </div>
 </template>
 
@@ -57,15 +54,19 @@
 import AppHero from '@/components/AppHero.vue'
 import AppSectionHeading from '@/components/AppSectionHeading.vue'
 import ProductPreview from '@/components/products/ProductPreview.vue'
+import AppCallToAction from '@/components/AppCallToAction.vue'
 
 export default {
   components: {
     AppHero,
     AppSectionHeading,
-    ProductPreview
+    ProductPreview,
+    AppCallToAction
   },
   data() {
     return {
+      tagline: 'THE HIPPO SLURRY PUMP RANGE',
+      slogan: 'THE AWARD WINNING HEAVY DUTY PUMP RANGE',
       pumps: [
         {
           titleTop: 'Submersible Bottom',

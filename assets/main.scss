@@ -124,6 +124,10 @@ img {
   width: 100%;
 }
 
+figure > * {
+  font-weight: bold;
+}
+
 ul {
   padding: 0;
   li {
