@@ -21,12 +21,13 @@
         </template>
       </AppSectionHeading>
       <div class="product-grid">
-        <h4>Type: {{ pump.type }}</h4>
-        <p>{{ pump.description }}</p>
-        <figure class="framed side">
+        <div class="intro">
+          <h4>Type: {{ pump.type }}</h4>
+          <p>{{ pump.description }}</p>
+        </div>
+        <figure class="side">
           <img :src="pump.img" :alt="`diagram of the ${pump.title}`" />
         </figure>
-
         <div class="design-features section">
           <h4>Design Features</h4>
           <ul>
@@ -35,73 +36,84 @@
             </li>
           </ul>
         </div>
+        <div class="additional-content">
+          <div class="benefits section">
+            <h4>Benefits</h4>
+            <ul>
+              <li v-for="(benefit, i) in pump.benefits" :key="i">
+                {{ i + 1 }}. {{ benefit }}
+              </li>
+            </ul>
+          </div>
 
-        <div class="benefits section">
-          <h4>Benefits</h4>
-          <ul>
-            <li v-for="(benefit, i) in pump.benefits" :key="i">
-              {{ i + 1 }}. {{ benefit }}
-            </li>
-          </ul>
-        </div>
+          <div v-if="pump.application" class="application section">
+            <h4>Application</h4>
+            <div class="flex">
+              <figure
+                v-for="(img, i) in pump.applicaiton"
+                :key="i"
+                class="framed"
+              >
+                <img
+                  :src="img.img"
+                  :alt="`an image of a ${pump.title} in operation ${img.text}`"
+                />
+              </figure>
+            </div>
+          </div>
 
-        <div v-if="pump.application" class="application section">
-          <h4>Application</h4>
-          <figure v-for="(img, i) in pump.applicaiton" :key="i" class="framed">
-            <img
-              :src="img.img"
-              :alt="`an image of a ${pump.title} in operation ${img.text}`"
-            />
-          </figure>
-        </div>
+          <div v-if="pump.alternativeAgitator.images" class="section">
+            <AppSectionHeading>
+              <template v-slot:section-heading>
+                {{ altHead[0] }}
+              </template>
+              <template v-slot:sec-head-pt>
+                {{ altHead[1] }}
+              </template>
+            </AppSectionHeading>
+            <div class="flex">
+              <figure
+                v-for="(img, i) in pump.alternativeAgitator.images"
+                :key="i"
+                class="framed"
+              >
+                <img :src="img.img" :alt="img.title" />
+                <figcaption class="center">{{ img.title }}</figcaption>
+              </figure>
+            </div>
+          </div>
 
-        <div v-if="pump.alternativeAgitator.images" class="section">
-          <AppSectionHeading>
-            <template v-slot:section-heading>
-              {{ altHead[0] }}
-            </template>
-            <template v-slot:sec-head-pt>
-              {{ altHead[1] }}
-            </template>
-          </AppSectionHeading>
-          <figure
-            v-for="(img, i) in pump.alternativeAgitator.images"
-            :key="i"
-            class="framed"
-          >
-            <img :src="img.img" :alt="img.title" />
-            <figcaption class="center">{{ img.title }}</figcaption>
-          </figure>
-        </div>
+          <div v-if="pump.pumpData" class="pump-data">
+            <AppSectionHeading>
+              <template v-slot:section-heading>
+                {{ altHead[0] }}
+              </template>
+              <template v-slot:sec-head-pt>
+                {{ altHead[1] }}
+              </template>
+            </AppSectionHeading>
+          </div>
 
-        <div v-if="pump.pumpData" class="pump-data">
-          <AppSectionHeading>
-            <template v-slot:section-heading>
-              {{ altHead[0] }}
-            </template>
-            <template v-slot:sec-head-pt>
-              {{ altHead[1] }}
-            </template>
-          </AppSectionHeading>
-        </div>
-
-        <div class="pump-curves">
-          <AppSectionHeading>
-            <template v-slot:section-heading>
-              {{ pumpCurves[0] }}
-            </template>
-            <template v-slot:sec-head-pt>
-              {{ pumpCurves[1] }}
-            </template>
-          </AppSectionHeading>
-          <figure
-            v-for="(img, i) in pump.pumpCurves.images"
-            :key="i"
-            class="framed"
-          >
-            <img :src="img.img" :alt="img.title" />
-            <figcaption class="center">{{ img.title }}</figcaption>
-          </figure>
+          <div class="pump-curves">
+            <AppSectionHeading>
+              <template v-slot:section-heading>
+                {{ pumpCurves[0] }}
+              </template>
+              <template v-slot:sec-head-pt>
+                {{ pumpCurves[1] }}
+              </template>
+            </AppSectionHeading>
+            <div class="flex">
+              <figure
+                v-for="(img, i) in pump.pumpCurves.images"
+                :key="i"
+                class="framed"
+              >
+                <img :src="img.img" :alt="img.title" />
+                <figcaption class="center">{{ img.title }}</figcaption>
+              </figure>
+            </div>
+          </div>
         </div>
       </div>
     </main>
@@ -242,9 +254,38 @@ export default {
 <style lang="scss" scoped>
 .product-grid {
   padding-left: 0.5rem;
+  @media (min-width: 768px) {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: 1fr 3fr;
+    grid-template-areas:
+      'diagram intro'
+      'diagram design-features'
+      ' .      additional-content';
+  }
+
+  .side {
+    grid-area: diagram;
+  }
+
+  .intro {
+    grid-area: intro;
+  }
+
+  .design-features {
+    grid-area: design-features;
+  }
+
+  .additional-content {
+    grid-area: additional-content;
+  }
 
   img {
     max-height: 80vh;
+    @media (min-width: 768px) {
+      max-height: initial;
+      width: 100%;
+    }
     display: block;
     width: auto;
     margin: {
@@ -252,9 +293,9 @@ export default {
       right: auto;
     }
   }
-  .section {
-    margin-top: 2rem;
-  }
+  // .section {
+  //   margin-top: 2rem;
+  // }
 
   figure {
     margin-bottom: 2rem;
@@ -265,6 +306,10 @@ export default {
       height: auto;
       width: 95%;
     }
+  }
+  .flex {
+    display: flex;
+    justify-content: space-between;
   }
 }
 </style>

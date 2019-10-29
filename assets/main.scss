@@ -130,8 +130,12 @@ figure > * {
 
 ul {
   padding: 0;
+  margin: 20px 0;
   li {
     list-style: none;
+    margin: 5px 0;
+    font-family: 'PT Serif', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+      Roboto, 'Helvetica Neue', Arial, sans-serif;
   }
 }
 
