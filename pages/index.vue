@@ -15,7 +15,7 @@
 
 <script>
 import AppHero from '@/components/AppHero.vue'
-import AppFeaturedProducts from '@/components/Products/AppFeaturedProducts.vue'
+import AppFeaturedProducts from '@/components/products/AppFeaturedProducts.vue'
 import WorkProcess from '@/components/products/WorkProcess.vue'
 import Services from '@/components/products/Services.vue'
 import AppGeo from '@/components/AppGeo.vue'
