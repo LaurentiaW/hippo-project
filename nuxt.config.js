@@ -62,5 +62,12 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {}
+  },
+  generate: {
+    routes: [
+      'pump-range/hippo-submersible-bottom-suction-slurry-pump',
+      '/pump-range/hippo-submersible-top-suction-slurry-pump',
+      '/pump-range/hippo-vertical-spindle-vortex-slurry-pump'
+    ]
   }
 }
