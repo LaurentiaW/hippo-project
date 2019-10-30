@@ -9,13 +9,13 @@
 
 <script>
 import TheHeader from '@/components/Nav/TheHeader'
-import TheSideNav from '@/components/Nav/TheSideNav'
+import TheSidenav from '@/components/Nav/TheSidenav'
 import AppFooter from '@/components/AppFooter'
 
 export default {
   components: {
     TheHeader,
-    TheSideNav,
+    TheSidenav,
     AppFooter
   },
   data() {
