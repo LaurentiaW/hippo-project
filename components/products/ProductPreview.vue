@@ -4,10 +4,10 @@
       <img :src="pump.img" :alt="pump.title" class="framed" />
       <div class="title-wrapper">
         <h4>
-          {{ pump.titleTop }}
+          {{ sectionHead[0] }}
         </h4>
         <h4>
-          {{ pump.titleBottom }}
+          {{ sectionHead[1] }}
         </h4>
       </div>
     </div>
@@ -15,9 +15,21 @@
 </template>
 
 <script>
+import { strSplit } from '@/mixins/strSplit.js'
+
 export default {
   props: {
     pump: Object
+  },
+  computed: {
+    sectionHead() {
+      return strSplit(this.pump.title)
+    }
+  },
+  methods: {
+    strSplit(str) {
+      return strSplit(str)
+    }
   }
 }
 </script>

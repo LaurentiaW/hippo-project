@@ -1,16 +1,7 @@
 <template>
   <div>
     <!-- <h1>Single Pump page {{ $route.params.id }}</h1> -->
-    <AppHero>
-      <template v-slot="{ tagline }">
-        {{ splitTag[0] }}
-        {{ splitTag[1] }}
-      </template>
-      <template v-slot="{ slogan }">
-        {{ splitSlogan[0] }}
-        {{ splitSlogan[1] }}
-      </template>
-    </AppHero>
+
     <main>
       <AppSectionHeading>
         <template v-slot:section-heading>
@@ -123,20 +114,14 @@
 
 <script>
 import { strSplit } from '@/mixins/strSplit.js'
-import AppHero from '@/components/AppHero.vue'
 import AppSectionHeading from '@/components/AppSectionHeading.vue'
 import AppCallToAction from '@/components/AppCallToAction.vue'
 
 export default {
   components: {
-    AppHero,
     AppSectionHeading,
     AppCallToAction
   },
-  // props: {
-  //   pump: Object
-  // },
-  // mixins: [strSplit],
   data() {
     return {
       tagline: 'THE HIPPO SLURRY PUMP RANGE',

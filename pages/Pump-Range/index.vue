@@ -1,15 +1,5 @@
 <template>
   <div>
-    <AppHero>
-      <template v-slot="{ tagline }">
-        {{ splitTag[0] }}
-        {{ splitTag[1] }}
-      </template>
-      <template v-slot="{ slogan }">
-        {{ splitSlogan[0] }}
-        {{ splitSlogan[1] }}
-      </template>
-    </AppHero>
     <main>
       <section>
         <AppSectionHeading>
@@ -51,14 +41,12 @@
 </template>
 
 <script>
-import AppHero from '@/components/AppHero.vue'
 import AppSectionHeading from '@/components/AppSectionHeading.vue'
 import ProductPreview from '@/components/products/ProductPreview.vue'
 import AppCallToAction from '@/components/AppCallToAction.vue'
 
 export default {
   components: {
-    AppHero,
     AppSectionHeading,
     ProductPreview,
     AppCallToAction
@@ -69,8 +57,7 @@ export default {
       slogan: 'THE AWARD WINNING HEAVY DUTY PUMP RANGE',
       pumps: [
         {
-          titleTop: 'Submersible Bottom',
-          titleBottom: 'Suction Pump',
+          title: 'Submersible Bottom Suction Pump',
           type: 'SB',
           configuration: 'Submersible',
           id: 'hippo-submersible-bottom-suction-slurry-pump',
@@ -78,8 +65,7 @@ export default {
             'https://hazletonpumps.co.za/wp-content/uploads/2017/07/Submersible-Bottom-Suction-diagram-cut-through-147x300.jpg'
         },
         {
-          titleTop: 'Submersible Top',
-          titleBottom: 'Suction Pump',
+          title: 'Submersible Top Suction Pump',
           type: 'ST',
           configuration: 'Submersible',
           id: 'hippo-submersible-top-suction-slurry-pump',
@@ -87,8 +73,7 @@ export default {
             'https://hazletonpumps.co.za/wp-content/uploads/2017/07/Submersible-Top-Suction-diagram-cut-through-161x300.jpg'
         },
         {
-          titleTop: 'Vertical Spindle',
-          titleBottom: 'Vortex Pump',
+          title: 'Vertical Spindle Vortex Pump',
           type: 'VV',
           configuration: 'Vertical',
           id: 'hippo-vertical-spindle-vortex-slurry-pump',
@@ -100,10 +85,10 @@ export default {
   },
   computed: {
     submersibleConfig() {
-      return this.pumps.filter((pump) => pump.configuration === 'Submersible')
+      return this.pumps.filter(pump => pump.configuration === 'Submersible')
     },
     verticalConfig() {
-      return this.pumps.filter((pump) => pump.configuration === 'Vertical')
+      return this.pumps.filter(pump => pump.configuration === 'Vertical')
     }
   }
 }
