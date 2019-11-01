@@ -3,14 +3,7 @@
     <AppHero :tagline="tagline" :slogan="slogan" />
     <main>
       <section>
-        <!-- <AppSectionHeading>
-          <template v-slot:section-heading>
-            Pumping
-          </template>
-          <template v-slot:sec-head-pt>
-            Systems
-          </template>
-        </AppSectionHeading> -->
+        <AppSectionHeading :heading="heading" />
         <div class="grid">
           <ProductPreview
             v-for="(pump, i) in pumpSystems"
@@ -26,14 +19,14 @@
 
 <script>
 import AppHero from '@/components/AppHero.vue'
-// import AppSectionHeading from '@/components/AppSectionHeading.vue'
+import AppSectionHeading from '@/components/AppSectionHeading.vue'
 import ProductPreview from '@/components/products/ProductPreview.vue'
 import AppCallToAction from '@/components/AppCallToAction.vue'
 
 export default {
   components: {
     AppHero,
-    // AppSectionHeading,
+    AppSectionHeading,
     ProductPreview,
     AppCallToAction
   },
@@ -41,6 +34,7 @@ export default {
     return {
       tagline: 'SLURRY PUMPING SYSTEMS',
       slogan: 'INNOVATIVE ENGINEERING SOLUTIONS',
+      heading: 'PUMPING SYSTEMS',
       pumpSystems: [
         {
           title: 'High Head Series Submersible Pumping System',
