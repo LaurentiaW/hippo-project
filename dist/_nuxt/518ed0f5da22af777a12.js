@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[3],{241:function(t,n,e){"use strict";e.r(n);var l={},o=e(3),component=Object(o.a)(l,(function(){var t=this.$createElement,n=this._self._c||t;return n("div",[n("AppHero",{attrs:{tagline:this.tagline,slogan:this.slogan}}),this._v(" "),n("main")],1)}),[],!1,null,"7d5c4609",null);n.default=component.exports}}]);
