@@ -1,19 +1,16 @@
 <template>
   <div>
-    <div class="container">
-      <Tagline :tagline="tagline" />
-      <Slogan :slogan="slogan" />
-    </div>
+    <AppHero :tagline="tagline" :slogan="slogan" />
     <main>
       <section>
-        <AppSectionHeading>
+        <!-- <AppSectionHeading>
           <template v-slot:section-heading>
             Pumping
           </template>
           <template v-slot:sec-head-pt>
             Systems
           </template>
-        </AppSectionHeading>
+        </AppSectionHeading> -->
         <div class="grid">
           <ProductPreview
             v-for="(pump, i) in pumpSystems"
@@ -28,17 +25,15 @@
 </template>
 
 <script>
-import Tagline from '@/components/AppHero/Tagline.vue'
-import Slogan from '@/components/AppHero/Slogan.vue'
-import AppSectionHeading from '@/components/AppSectionHeading.vue'
+import AppHero from '@/components/AppHero.vue'
+// import AppSectionHeading from '@/components/AppSectionHeading.vue'
 import ProductPreview from '@/components/products/ProductPreview.vue'
 import AppCallToAction from '@/components/AppCallToAction.vue'
 
 export default {
   components: {
-    Tagline,
-    Slogan,
-    AppSectionHeading,
+    AppHero,
+    // AppSectionHeading,
     ProductPreview,
     AppCallToAction
   },

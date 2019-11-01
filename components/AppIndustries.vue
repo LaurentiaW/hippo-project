@@ -1,13 +1,6 @@
 <template>
   <section>
-    <AppSectionHeading>
-      <template v-slot:section-heading>
-        OUR EXPERIENCE
-      </template>
-      <template v-slot:sec-head-pt>
-        INCLUDES
-      </template>
-    </AppSectionHeading>
+    <AppSectionHeading :heading="heading" />
     <div class="grid">
       <article
         v-for="industry in industries"
@@ -34,6 +27,7 @@ export default {
   },
   data() {
     return {
+      heading: 'EXPERIENCE INCLUDES',
       industries: [
         {
           title: 'Mining',

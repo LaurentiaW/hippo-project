@@ -1,13 +1,6 @@
 <template>
   <section>
-    <AppSectionHeading>
-      <template v-slot:section-heading>
-        SERVICES &
-      </template>
-      <template v-slot:sec-head-pt>
-        AFTER SALES CARE
-      </template>
-    </AppSectionHeading>
+    <AppSectionHeading :heading="heading" />
     <p>
       This content needs to be provided still Lorem ipsum dolor sit amet,
       consectetur adipisicing elit. Possimus quaerat mollitia ducimus, molestiae
@@ -35,6 +28,11 @@ import AppSectionHeading from '@/components/AppSectionHeading.vue'
 export default {
   components: {
     AppSectionHeading
+  },
+  data() {
+    return {
+      heading: 'SERVICES & AFTER SALES CARE'
+    }
   }
 }
 </script>

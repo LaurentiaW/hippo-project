@@ -1,9 +1,6 @@
 <template>
   <div>
-    <div class="container">
-      <Tagline />
-      <Slogan />
-    </div>
+    <AppHero />
     <main>
       <AppFeaturedProducts />
       <WorkProcess />
@@ -17,8 +14,7 @@
 </template>
 
 <script>
-import Tagline from '@/components/AppHero/Tagline.vue'
-import Slogan from '@/components/AppHero/Slogan.vue'
+import AppHero from '@/components/AppHero.vue'
 import AppFeaturedProducts from '@/components/products/AppFeaturedProducts.vue'
 import WorkProcess from '@/components/products/WorkProcess.vue'
 import Services from '@/components/products/Services.vue'
@@ -29,8 +25,7 @@ import AppCallToAction from '@/components/AppCallToAction.vue'
 
 export default {
   components: {
-    Tagline,
-    Slogan,
+    AppHero,
     AppFeaturedProducts,
     WorkProcess,
     Services,

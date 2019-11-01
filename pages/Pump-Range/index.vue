@@ -1,15 +1,9 @@
 <template>
   <div>
+    <AppHero :tagline="tagline" :slogan="slogan" />
     <main>
       <section>
-        <AppSectionHeading>
-          <template v-slot:section-heading>
-            SUBMERSIBLE
-          </template>
-          <template v-slot:sec-head-pt>
-            CONFIGURATIONS
-          </template>
-        </AppSectionHeading>
+        <AppSectionHeading :heading="submersibleHeading" />
         <div class="grid">
           <ProductPreview
             v-for="(pump, i) in submersibleConfig"
@@ -19,14 +13,7 @@
         </div>
       </section>
       <section>
-        <AppSectionHeading>
-          <template v-slot:section-heading>
-            VERTICAL
-          </template>
-          <template v-slot:sec-head-pt>
-            CONFIGURATIONS
-          </template>
-        </AppSectionHeading>
+        <AppSectionHeading :heading="verticalHeading" />
         <div class="grid">
           <ProductPreview
             v-for="(pump, i) in verticalConfig"
@@ -41,12 +28,14 @@
 </template>
 
 <script>
+import AppHero from '@/components/AppHero.vue'
 import AppSectionHeading from '@/components/AppSectionHeading.vue'
 import ProductPreview from '@/components/products/ProductPreview.vue'
 import AppCallToAction from '@/components/AppCallToAction.vue'
 
 export default {
   components: {
+    AppHero,
     AppSectionHeading,
     ProductPreview,
     AppCallToAction
@@ -55,6 +44,8 @@ export default {
     return {
       tagline: 'THE HIPPO SLURRY PUMP RANGE',
       slogan: 'THE AWARD WINNING HEAVY DUTY PUMP RANGE',
+      submersibleHeading: 'SUBMERSIBLE CONFIGURATIONS',
+      verticalHeading: 'Vertical CONFIGURATIONS',
       pumps: [
         {
           title: 'Submersible Bottom Suction Pump',

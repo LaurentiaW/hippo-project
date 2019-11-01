@@ -1,13 +1,6 @@
 <template>
   <section>
-    <AppSectionHeading>
-      <template v-slot:section-heading>
-        OUR
-      </template>
-      <template v-slot:sec-head-pt>
-        PROCESS
-      </template>
-    </AppSectionHeading>
+    <AppSectionHeading :heading="heading" />
     <div class="grid">
       <div
         v-for="(box, i) in boxes"
@@ -32,6 +25,7 @@ export default {
   },
   data() {
     return {
+      heading: 'OUR PROCESS',
       boxes: [
         {
           heading: 'DEFINE THE PROBLEM',

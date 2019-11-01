@@ -1,13 +1,6 @@
 <template>
   <section>
-    <AppSectionHeading>
-      <template v-slot:section-heading>
-        DEVELOPED FOR AFRICA,
-      </template>
-      <template v-slot:sec-head-pt>
-        RELIED ON WORLDWIDE
-      </template>
-    </AppSectionHeading>
+    <AppSectionHeading :heading="heading" />
     <p>
       <slot name="open-p"
         >The Hippo Slurry Pump Range was designed and developed to meet the
@@ -42,6 +35,11 @@ export default {
   components: {
     AppSectionHeading,
     Map
+  },
+  data() {
+    return {
+      heading: 'DEVELOPED FOR AFRICA, RELIED ON WORLDWIDE'
+    }
   }
 }
 </script>

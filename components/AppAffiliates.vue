@@ -1,13 +1,6 @@
 <template>
   <section>
-    <AppSectionHeading>
-      <template v-slot:section-heading>
-        ASSOCIATIONS &
-      </template>
-      <template v-slot:sec-head-pt>
-        AFFILIATES
-      </template>
-    </AppSectionHeading>
+    <AppSectionHeading :heading="heading" />
     <div class="affiliates">
       <ul class="grid">
         <li v-for="(logo, i) in associations" :key="i">
@@ -29,6 +22,7 @@ export default {
   },
   data() {
     return {
+      heading: 'ASSOCIATIONS & AFFILIATES',
       associations: [
         {
           logo: '/logos/saceec.png',

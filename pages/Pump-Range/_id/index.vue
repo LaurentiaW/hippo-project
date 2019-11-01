@@ -1,16 +1,9 @@
 <template>
   <div>
-    <!-- <h1>Single Pump page {{ $route.params.id }}</h1> -->
-
+    <p>Single Pump page {{ $route.name }}</p>
+    <AppHero :tagline="tagline" :slogan="slogan" />
     <main>
-      <AppSectionHeading>
-        <template v-slot:section-heading>
-          {{ sectionHead[0] }}
-        </template>
-        <template v-slot:sec-head-pt>
-          {{ sectionHead[1] }}
-        </template>
-      </AppSectionHeading>
+      <AppSectionHeading :heading="heading" />
       <div class="product-grid">
         <div class="intro">
           <h4>Type: {{ pump.type }}</h4>
@@ -54,14 +47,7 @@
           </div>
 
           <div v-if="pump.alternativeAgitator.images" class="section">
-            <AppSectionHeading>
-              <template v-slot:section-heading>
-                {{ altHead[0] }}
-              </template>
-              <template v-slot:sec-head-pt>
-                {{ altHead[1] }}
-              </template>
-            </AppSectionHeading>
+            <AppSectionHeading :heading="pump.alternativeAgitator.title" />
             <div class="flex">
               <figure
                 v-for="(img, i) in pump.alternativeAgitator.images"
@@ -75,25 +61,11 @@
           </div>
 
           <div v-if="pump.pumpData" class="pump-data">
-            <AppSectionHeading>
-              <template v-slot:section-heading>
-                {{ altHead[0] }}
-              </template>
-              <template v-slot:sec-head-pt>
-                {{ altHead[1] }}
-              </template>
-            </AppSectionHeading>
+            <AppSectionHeading :heading="pump.pumpData.title" />
           </div>
 
           <div class="pump-curves">
-            <AppSectionHeading>
-              <template v-slot:section-heading>
-                {{ pumpCurves[0] }}
-              </template>
-              <template v-slot:sec-head-pt>
-                {{ pumpCurves[1] }}
-              </template>
-            </AppSectionHeading>
+            <AppSectionHeading :heading="pump.pumpCurves.title" />
             <div class="flex">
               <figure
                 v-for="(img, i) in pump.pumpCurves.images"
@@ -113,12 +85,13 @@
 </template>
 
 <script>
-import { strSplit } from '@/mixins/strSplit.js'
+import AppHero from '@/components/AppHero.vue'
 import AppSectionHeading from '@/components/AppSectionHeading.vue'
 import AppCallToAction from '@/components/AppCallToAction.vue'
 
 export default {
   components: {
+    AppHero,
     AppSectionHeading,
     AppCallToAction
   },
@@ -126,6 +99,7 @@ export default {
     return {
       tagline: 'THE HIPPO SLURRY PUMP RANGE',
       slogan: 'THE AWARD WINNING HEAVY DUTY PUMP RANGE',
+      heading: 'SUBMERSIBLE BOTTOM SUCTION',
       pump: {
         tagline: 'Submersible Bottom Suction Slurry Pump',
         slogan: 'The Problem Solver',
@@ -215,22 +189,6 @@ export default {
           ]
         }
       }
-    }
-  },
-  method: {
-    strSplit(str) {
-      return strSplit(str)
-    }
-  },
-  computed: {
-    sectionHead() {
-      return strSplit(this.pump.title)
-    },
-    altHead() {
-      return strSplit(this.pump.alternativeAgitator.title)
-    },
-    pumpCurves() {
-      return strSplit(this.pump.pumpCurves.title)
     }
   }
 }

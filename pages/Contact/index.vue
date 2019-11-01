@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1>Contact</h1>
+    <AppHero :tagline="tagline" :slogan="slogan" />
+    <main></main>
   </div>
 </template>
 
