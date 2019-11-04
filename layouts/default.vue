@@ -22,6 +22,19 @@ export default {
     return {
       displaySidenav: false
     }
+  },
+  head() {
+    return {
+      titleTemplate: '%s - Hippo Slurry Pump Range & Pumping Systems',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content:
+            'The award winning Hippo Slurry Pump Range for heavy duty applications'
+        }
+      ]
+    }
   }
 }
 </script>

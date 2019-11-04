@@ -30,6 +30,19 @@ export default {
     ProductPreview,
     AppCallToAction
   },
+  head() {
+    return {
+      title: 'Pumping Systems',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content:
+            'The Hippo Pump Range engineerd as part of innovative pumping systems to solve complex problems'
+        }
+      ]
+    }
+  },
   data() {
     return {
       tagline: 'SLURRY PUMPING SYSTEMS',

@@ -33,6 +33,11 @@ export default {
     AppIndustries,
     AppAffiliates,
     AppCallToAction
+  },
+  head() {
+    return {
+      title: 'Home'
+    }
   }
 }
 </script>

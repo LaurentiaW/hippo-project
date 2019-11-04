@@ -20,16 +20,21 @@ export default {
       default: 'HIPPO SLURRY PUMP RANGE & PUMP SYSTEMS'
     }
   },
+  data() {
+    return {
+      strSplit
+    }
+  },
   computed: {
     sectionHead() {
       return strSplit(this.$props.heading)
     }
-  },
-  methods: {
-    strSplit(str) {
-      return strSplit(str)
-    }
   }
+  // methods: {
+  //   strSplit(str) {
+  //     return strSplit(str)
+  //   }
+  // }
 }
 </script>
 

@@ -85,11 +85,24 @@
 </template>
 
 <script>
+import { titleCase } from '@/mixins/titleCase.js'
 import AppHero from '@/components/AppHero.vue'
 import AppSectionHeading from '@/components/AppSectionHeading.vue'
 import AppCallToAction from '@/components/AppCallToAction.vue'
 
 export default {
+  head() {
+    return {
+      title: 'The ' + this.id,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.pump.description
+        }
+      ]
+    }
+  },
   components: {
     AppHero,
     AppSectionHeading,
@@ -97,6 +110,7 @@ export default {
   },
   data() {
     return {
+      titleCase,
       tagline: 'THE HIPPO SLURRY PUMP RANGE',
       slogan: 'THE AWARD WINNING HEAVY DUTY PUMP RANGE',
       heading: 'SUBMERSIBLE BOTTOM SUCTION',
@@ -189,6 +203,11 @@ export default {
           ]
         }
       }
+    }
+  },
+  computed: {
+    id() {
+      return titleCase(this.$route.params.id)
     }
   }
 }
