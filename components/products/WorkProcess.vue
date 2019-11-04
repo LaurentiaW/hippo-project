@@ -2,26 +2,25 @@
   <section>
     <AppSectionHeading :heading="heading" />
     <div class="grid">
-      <div
+      <AppBoxes
         v-for="(box, i) in boxes"
+        :id="i"
         :key="i"
-        class="bg-img"
-        :style="{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url( ${box.img})`
-        }"
-      >
-        <h4>{{ i + 1 }}. {{ box.heading }}</h4>
-        <p>{{ box.details }}</p>
-      </div>
+        :heading="box.heading"
+        :img="box.img"
+        :details="box.details"
+      />
     </div>
   </section>
 </template>
 
 <script>
 import AppSectionHeading from '@/components/AppSectionHeading.vue'
+import AppBoxes from '@/components/AppBoxes.vue'
 export default {
   components: {
-    AppSectionHeading
+    AppSectionHeading,
+    AppBoxes
   },
   data() {
     return {

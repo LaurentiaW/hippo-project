@@ -2,7 +2,7 @@
   <div>
     <AppHero :tagline="tagline" :slogan="slogan" />
     <main>
-      <section>
+      <section class="profile">
         <AppSectionHeading :heading="heading" />
         <div class="about flex">
           <p>
@@ -47,13 +47,26 @@
           </div>
         </div>
       </section>
-      <section>
+      <section class="history">
         <AppSectionHeading :heading="headingHistory" />
+        <div class="grid">
+          <AppBoxes
+            v-for="(box, i) in boxes"
+            :id="i"
+            :key="i"
+            :heading="box.heading"
+            :img="box.img"
+            :details="box.details"
+          />
+        </div>
       </section>
-      <section>
+      <section class="awards">
         <AppSectionHeading :heading="headingAwards" />
+        <div class="grid">
+          <AwardPreview v-for="(award, i) in awards" :key="i" :award="award" />
+        </div>
       </section>
-      <section>
+      <section class="news">
         <AppSectionHeading :heading="headingNews" />
       </section>
     </main>
@@ -64,12 +77,16 @@
 <script>
 import AppHero from '@/components/AppHero.vue'
 import AppSectionHeading from '@/components/AppSectionHeading.vue'
+import AppBoxes from '@/components/AppBoxes.vue'
+import AwardPreview from '@/components/Awards/AwardPreview.vue'
 import AppCallToAction from '@/components/AppCallToAction.vue'
 
 export default {
   components: {
     AppHero,
     AppSectionHeading,
+    AppBoxes,
+    AwardPreview,
     AppCallToAction
   },
   data() {
@@ -79,7 +96,50 @@ export default {
       heading: 'ABOUT HIPPO SLURRY PUMPS',
       headingHistory: 'THE HIPPO TIME LINE',
       headingAwards: 'Our Awards',
-      headingNews: 'The News Room'
+      headingNews: 'The News Room',
+      boxes: [
+        {
+          img:
+            'https://images.pexels.com/photos/716661/pexels-photo-716661.jpeg',
+          heading: 'FOUNDED IN',
+          details:
+            "Using our years of experience in the pumping industry we examine our client's objective to make sure the end result will be successfully achieved"
+        },
+        {
+          img:
+            'https://images.pexels.com/photos/1260309/pexels-photo-1260309.jpeg',
+          heading: 'SIGNIFICANT EVENTS',
+          details:
+            'We custom engineer the best solution using our award winning Hippo Slurry Pump Range built to IES standards with the most appropriate materials '
+        },
+        {
+          img:
+            'https://images.pexels.com/photos/38600/construction-worker-concrete-hummer-vibrator-38600.jpeg',
+          heading: 'AWARD WINNING SOLUTIONS',
+          details:
+            "After testing and quality assurance has made sure the solution perform as needed we install the solution and monitor with our clients whether the client's initial objective has been met "
+        }
+      ],
+      awards: [
+        {
+          id: '1',
+          title: 'Award of Excellence',
+          date: '2017-05-25',
+          institution: 'South African Flame Proof Association',
+          category: 'Most Innovative Product or Engineering Solution',
+          place: 'runner up',
+          img: '/img/awards/1.png'
+        },
+        {
+          id: '2',
+          title: '3rd Annual SA Premier Business Awards 2014/2015',
+          date: '2015-04-09',
+          institution: 'the dti (Department of Trade and Industries)',
+          category: 'SMME Category',
+          place: 'Winner',
+          img: '/img/awards/2.png'
+        }
+      ]
     }
   }
 }
@@ -96,6 +156,7 @@ export default {
     }
   }
 }
+
 .about {
   img {
     max-width: 330px;
@@ -104,6 +165,23 @@ export default {
       right: auto;
       left: auto;
     }
+  }
+}
+
+.grid {
+  display: grid;
+  @media (min-width: 400px) {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 1rem;
+  }
+}
+
+.awards {
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
   }
 }
 </style>

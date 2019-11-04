@@ -11,20 +11,13 @@
       <br />
       {{ splitSlogan[1] }}
     </h3>
-    <!-- <Tagline :tagline="hero.tagline" />
-    <Slogan :slogan="hero.slogan" /> -->
   </div>
 </template>
 
 <script>
 import { strSplit } from '@/mixins/strSplit.js'
-// import Tagline from '@/components/AppHero/Tagline.vue'
-// import Slogan from '@/components/AppHero/Slogan.vue'
+
 export default {
-  components: {
-    // Tagline,
-    // Slogan
-  },
   props: {
     tagline: {
       type: String,
