@@ -21,14 +21,14 @@ export default {
   props: {
     pump: Object
   },
+  data() {
+    return {
+      strSplit
+    }
+  },
   computed: {
     sectionHead() {
       return strSplit(this.pump.title)
-    }
-  },
-  methods: {
-    strSplit(str) {
-      return strSplit(str)
     }
   }
 }

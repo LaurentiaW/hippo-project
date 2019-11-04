@@ -16,14 +16,14 @@ export default {
       default: 'CUSTOMISE TECHNOLOGY INCOMPARABLE QUALITY'
     }
   },
+  data() {
+    return {
+      strSplit
+    }
+  },
   computed: {
     splitSlogan() {
       return strSplit(this.$props.slogan)
-    }
-  },
-  methods: {
-    strSplit(str) {
-      return strSplit(str)
     }
   }
 }

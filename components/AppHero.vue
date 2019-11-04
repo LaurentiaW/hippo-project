@@ -35,6 +35,11 @@ export default {
       default: 'CUSTOMISE TECHNOLOGY INCOMPARABLE QUALITY'
     }
   },
+  data() {
+    return {
+      strSplit
+    }
+  },
   computed: {
     splitTag() {
       return strSplit(this.$props.tagline)
@@ -42,15 +47,7 @@ export default {
     splitSlogan() {
       return strSplit(this.$props.slogan)
     }
-  },
-  methods: {
-    strSplit(str) {
-      return strSplit(str)
-    }
   }
-  // props: {
-  //   hero: Array
-  // }
 }
 </script>
 

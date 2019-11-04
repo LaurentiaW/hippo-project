@@ -17,14 +17,14 @@ export default {
       default: 'Hippo Slurry Pumps stands for'
     }
   },
+  data() {
+    return {
+      strSplit
+    }
+  },
   computed: {
     splitTag() {
       return strSplit(this.$props.tagline)
-    }
-  },
-  methods: {
-    strSplit(str) {
-      return strSplit(str)
     }
   }
 }

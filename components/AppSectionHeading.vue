@@ -30,11 +30,6 @@ export default {
       return strSplit(this.$props.heading)
     }
   }
-  // methods: {
-  //   strSplit(str) {
-  //     return strSplit(str)
-  //   }
-  // }
 }
 </script>
 
