@@ -44,7 +44,6 @@
     <div class="header-container">
       <header class="the-header container">
         <TheSideNavToggle @toggle="$emit('sidenavToggle')" />
-        <!-- <TheSideNavToggle @toggle="$emit('sidenavToggle')" /> -->
         <div class="logo">
           <nuxt-link to="/">
             <TheLogo name="brand-logo" />

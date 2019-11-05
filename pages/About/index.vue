@@ -62,8 +62,24 @@
       </section>
       <section class="awards">
         <AppSectionHeading :heading="headingAwards" />
-        <div class="grid">
-          <AwardPreview v-for="(award, i) in awards" :key="i" :award="award" />
+        <div class="flex">
+          <div class="img-wrapper">
+            <h4 class="upper center">The Hippo Trophy Room</h4>
+            <figure class="framed">
+              <img
+                src="/img/awards/trophy-wall.jpg"
+                alt="The Hippo Trophy Room"
+              />
+            </figure>
+          </div>
+          <p>
+            <nuxt-link to="/about/awards">
+              All of our hard work and ideas are not just appreciated by our
+              customers and partners but have also been recognised by various
+              institutions. Why not <span class="emphasize">visit</span> visit
+              our trophy room to see our accomplishments
+            </nuxt-link>
+          </p>
         </div>
       </section>
       <section class="news">
@@ -78,7 +94,6 @@
 import AppHero from '@/components/AppHero.vue'
 import AppSectionHeading from '@/components/AppSectionHeading.vue'
 import AppBoxes from '@/components/AppBoxes.vue'
-import AwardPreview from '@/components/Awards/AwardPreview.vue'
 import AppCallToAction from '@/components/AppCallToAction.vue'
 
 export default {
@@ -86,7 +101,6 @@ export default {
     AppHero,
     AppSectionHeading,
     AppBoxes,
-    AwardPreview,
     AppCallToAction
   },
   data() {
@@ -118,26 +132,6 @@ export default {
           heading: 'AWARD WINNING SOLUTIONS',
           details:
             "After testing and quality assurance has made sure the solution perform as needed we install the solution and monitor with our clients whether the client's initial objective has been met "
-        }
-      ],
-      awards: [
-        {
-          id: '1',
-          title: 'Award of Excellence',
-          date: '2017-05-25',
-          institution: 'South African Flame Proof Association',
-          category: 'Most Innovative Product or Engineering Solution',
-          place: 'runner up',
-          img: '/img/awards/1.png'
-        },
-        {
-          id: '2',
-          title: '3rd Annual SA Premier Business Awards 2014/2015',
-          date: '2015-04-09',
-          institution: 'the dti (Department of Trade and Industries)',
-          category: 'SMME Category',
-          place: 'Winner',
-          img: '/img/awards/2.png'
         }
       ]
     }
@@ -172,15 +166,6 @@ export default {
   display: grid;
   @media (min-width: 400px) {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 1rem;
-  }
-}
-
-.awards {
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-template-columns: 1fr 1fr;
     grid-gap: 1rem;
   }
 }

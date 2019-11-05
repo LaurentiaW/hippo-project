@@ -1,25 +1,29 @@
 <template>
-  <div class="award">
+  <!-- <nuxt-link :to="'/awards/' + award.id"> -->
+  <div class="award" @click="$emit('awardToggle')">
     <figure class="framed">
       <img
         ref="certificate"
         :src="award.img"
         :alt="award.title"
         :class="isPortrait ? portrait : landscape"
+        class="absolute-center"
       />
     </figure>
     <ul class="center">
       <li>
-        <h4>{{ award.title }}</h4>
+        <h4 class="truncate upper">{{ award.title }}</h4>
       </li>
-      <li>{{ award.institution }}</li>
-      <li>{{ award.date }}</li>
+      <li class="truncate">{{ award.institution }}</li>
+      <li class="truncate">{{ award.date }}</li>
     </ul>
   </div>
+  <!-- </nuxt-link> -->
 </template>
 
 <script>
 export default {
+  name: 'AwardPreview',
   props: {
     award: Object
   },
@@ -27,7 +31,8 @@ export default {
     return {
       isPortrait: false,
       portrait: 'portrait',
-      landscape: 'landscape'
+      landscape: 'landscape',
+      isModalVisible: false
     }
   },
   mounted() {
@@ -53,25 +58,49 @@ export default {
         this.isPortrait = true
       }
     }
+    // toggleAward(id) {
+    //   /*eslint-disable */
+    //   console.log(id)
+    // }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-figure {
+figure.framed {
+  padding: 0;
   height: 152px;
+  position: relative;
   img {
-    display: block;
-    width: auto;
-    // margin: auto;
-    margin-right: auto;
-    margin-left: auto;
     &.portrait {
       height: 130px;
+      width: auto;
     }
     &.landscape {
-      height: 95px;
+      width: 130px;
     }
+  }
+}
+.absolute-center {
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.truncate {
+  width: 35vw;
+  margin: auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+ul {
+  margin: 0;
+  li {
+    margin: 0;
   }
 }
 </style>

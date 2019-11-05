@@ -1,6 +1,6 @@
 <template>
   <div class="sidenav-container">
-    <div v-if="show" class="sidenav-backdrop" @click="$emit('close')"></div>
+    <div v-if="show" class="modal-backdrop" @click="$emit('close')"></div>
     <transition name="slide-side">
       <div v-if="show" class="sidenav">
         <div class="sidenav-top">
@@ -74,16 +74,6 @@ export default {
 .sidenav-container {
   height: 100%;
   width: 100%;
-}
-
-.sidenav-backdrop {
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: 1000;
-  position: fixed;
-  top: 0;
-  left: 0;
 }
 
 .sidenav {
