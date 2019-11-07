@@ -250,9 +250,6 @@ export default {
   .additional-content {
     grid-area: additional-content;
   }
-  // .section {
-  //   margin-top: 2rem;
-  // }
 
   figure {
     margin-bottom: 2rem;
