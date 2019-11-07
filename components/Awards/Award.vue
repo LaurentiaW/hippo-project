@@ -7,7 +7,11 @@
           <CloseIcon name="brand-close" />
         </i>
         <figure class="framed">
-          <img :src="award.img" :alt="award.title" />
+          <img
+            :src="award.img"
+            :alt="award.title"
+            :class="[isPortrait === true ? portrait : landscape]"
+          />
         </figure>
         <ul class="center">
           <li>{{ award.place }}</li>
@@ -35,8 +39,24 @@ export default {
       type: Boolean,
       default: false
     },
+    isPortrait: {
+      type: Boolean,
+      default: false
+    },
     award: Object
+  },
+  data() {
+    return {
+      portrait: 'portrait',
+      landscape: 'landscape'
+    }
   }
+  // computed: {
+  //   isPortrait() {
+  //     /*eslint-disable */
+  //     return this.$props.selectedAwardIsPortrait
+  //   }
+  // }
 }
 </script>
 
@@ -73,6 +93,10 @@ main {
       display: block;
       margin-left: auto;
       margin-right: auto;
+      &.portrait {
+        max-height: 60vh;
+        width: auto;
+      }
     }
   }
 }

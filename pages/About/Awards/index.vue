@@ -14,6 +14,7 @@
         </div>
         <Award
           :award="selectedAward"
+          :is-portrait="selectedAwardIsPortrait"
           :show="displayAward"
           @close="displayAward = false"
         />
@@ -55,6 +56,7 @@ export default {
       heading: 'our awards',
       displayAward: false,
       selectedAward: null,
+      selectedAwardIsPortrait: false,
       awards: [
         {
           id: '1',
@@ -96,11 +98,16 @@ export default {
     }
   },
   methods: {
-    onAwardSelect(award) {
-      /*eslint-disable */
-      console.log(award)
+    onAwardSelect(award, isPortrait) {
+      // /*eslint-disable */
+      // console.log(award, isPortrait)
       this.selectedAward = award
       this.displayAward = true
+      this.selectedAwardIsPortrait = isPortrait
+      // if (selectedAward != null) {
+      //   /*eslint-disable */
+      //   console.log(selectedAward, selectedAwardIsPortrait)
+      // }
     }
   }
 }

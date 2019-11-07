@@ -1,5 +1,4 @@
 <template>
-  <!-- <div class="award" @click="$emit('awardToggle', 'onAwardSelect')"> -->
   <div class="award" @click="onAwardSelect">
     <figure class="framed">
       <img
@@ -57,7 +56,7 @@ export default {
       }
     },
     onAwardSelect() {
-      this.$emit('awardSelect', this.award)
+      this.$emit('awardSelect', this.award, this.isPortrait)
     }
   }
 }
