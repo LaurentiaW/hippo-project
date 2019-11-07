@@ -89,6 +89,19 @@ export default {
     AppHero,
     AppSectionHeading
   },
+  head() {
+    return {
+      title: 'Contact ',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content:
+            'Complete this form to get in contact with The Hippo Slurry Pump Team'
+        }
+      ]
+    }
+  },
   data() {
     return {
       tagline: 'HOW CAN WE HELP YOU TODAY?',

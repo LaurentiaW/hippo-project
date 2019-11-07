@@ -40,6 +40,19 @@ export default {
     ProductPreview,
     AppCallToAction
   },
+  head() {
+    return {
+      title: 'Pump Range',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content:
+            'The Award winning Hippo Pump Range consist of submersible and vertical configurations'
+        }
+      ]
+    }
+  },
   data() {
     return {
       tagline: 'THE HIPPO SLURRY PUMP RANGE',

@@ -15,6 +15,18 @@
 import AppHero from '@/components/AppHero.vue'
 
 export default {
+  head() {
+    return {
+      title: 'Thank You - Form received',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Your contact form has been received - thank you!'
+        }
+      ]
+    }
+  },
   components: {
     AppHero
   }

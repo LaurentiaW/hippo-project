@@ -114,6 +114,19 @@ export default {
     AppBoxes,
     AppCallToAction
   },
+  head() {
+    return {
+      title: 'About',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content:
+            'Want to know more about Hippo Slurry Pump brand - find more information regarding our profile, history, news and awards'
+        }
+      ]
+    }
+  },
   data() {
     return {
       tagline: 'WHO WE ARE',

@@ -31,6 +31,19 @@ export default {
     AwardPreview,
     Award
   },
+  head() {
+    return {
+      title: 'Awards',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content:
+            'The Hippo Slurry Pump Range and Pumping Systems have been awarded on multiple occassions - here is some of the awards awarded '
+        }
+      ]
+    }
+  },
   data() {
     return {
       tagline: 'An Award Winning Solution',
