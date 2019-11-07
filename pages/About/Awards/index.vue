@@ -9,10 +9,14 @@
             v-for="(award, i) in awards"
             :key="i"
             :award="award"
-            @awardToggle="displayAward = !displayAward"
+            @awardSelect="onAwardSelect"
           />
         </div>
-        <Award :show="displayAward" @close="displayAward = false" />
+        <Award
+          :award="selectedAward"
+          :show="displayAward"
+          @close="displayAward = false"
+        />
       </section>
     </main>
   </div>
@@ -50,6 +54,7 @@ export default {
       slogan: 'The Hippo Trophy Room',
       heading: 'our awards',
       displayAward: false,
+      selectedAward: null,
       awards: [
         {
           id: '1',
@@ -88,6 +93,14 @@ export default {
           img: '/img/awards/2.png'
         }
       ]
+    }
+  },
+  methods: {
+    onAwardSelect(award) {
+      /*eslint-disable */
+      console.log(award)
+      this.selectedAward = award
+      this.displayAward = true
     }
   }
 }

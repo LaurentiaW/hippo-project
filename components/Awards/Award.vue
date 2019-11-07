@@ -1,5 +1,5 @@
 <template>
-  <div class="award-wrapper">
+  <div v-if="award" class="award-wrapper">
     <div v-if="show" class="modal-backdrop" @click="$emit('close')"></div>
     <div v-if="show" class="award">
       <div>
@@ -7,13 +7,15 @@
           <CloseIcon name="brand-close" />
         </i>
         <figure class="framed">
-          <img src="/img/awards/1.png" alt="award name" />
+          <img :src="award.img" :alt="award.title" />
         </figure>
         <ul class="center">
-          <li>place</li>
-          <li><h4 class="upper">AWARD NAME</h4></li>
-          <li>institution</li>
-          <li>date</li>
+          <li>{{ award.place }}</li>
+          <li>
+            <h4 class="upper">{{ award.title }}</h4>
+          </li>
+          <li>{{ award.institution }}</li>
+          <li>{{ award.date }}</li>
         </ul>
       </div>
     </div>
@@ -32,7 +34,8 @@ export default {
     show: {
       type: Boolean,
       default: false
-    }
+    },
+    award: Object
   }
 }
 </script>

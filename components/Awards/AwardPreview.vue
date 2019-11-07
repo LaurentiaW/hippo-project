@@ -1,5 +1,6 @@
 <template>
-  <div class="award" @click="$emit('awardToggle')">
+  <!-- <div class="award" @click="$emit('awardToggle', 'onAwardSelect')"> -->
+  <div class="award" @click="onAwardSelect">
     <figure class="framed">
       <img
         ref="certificate"
@@ -29,8 +30,7 @@ export default {
     return {
       isPortrait: false,
       portrait: 'portrait',
-      landscape: 'landscape',
-      isModalVisible: false
+      landscape: 'landscape'
     }
   },
   mounted() {
@@ -55,11 +55,10 @@ export default {
       ) {
         this.isPortrait = true
       }
+    },
+    onAwardSelect() {
+      this.$emit('awardSelect', this.award)
     }
-    // toggleAward(id) {
-    //   /*eslint-disable */
-    //   console.log(id)
-    // }
   }
 }
 </script>
