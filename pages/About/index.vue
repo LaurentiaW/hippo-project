@@ -84,6 +84,17 @@
       </section>
       <section class="news">
         <AppSectionHeading :heading="headingNews" />
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora
+          ratione non animi impedit natus nesciunt architecto ullam delectus
+          fugiat. Impedit.
+        </p>
+        <a
+          href="http://www.miningweekly.com/page/press-office-home/company:hazleton-pumps-2017-01-31"
+          target="_blank"
+          >Visit our parent company, Hazleton Pumps Intl,
+          <span class="emphasize">news' room</span> for more updates</a
+        >
       </section>
     </main>
     <AppCallToAction />

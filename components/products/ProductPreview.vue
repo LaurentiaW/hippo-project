@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="'/pump-range/' + pump.id">
+  <nuxt-link :to="productLink + pump.id">
     <div class="card">
       <img :src="pump.img" :alt="pump.title" class="framed" />
       <div class="title-wrapper">
@@ -23,12 +23,20 @@ export default {
   },
   data() {
     return {
-      strSplit
+      strSplit,
+      link: this.$route.name
     }
   },
   computed: {
     sectionHead() {
       return strSplit(this.pump.title)
+    },
+    productLink() {
+      if (this.link.includes('Range')) {
+        return '/pump-range/'
+      } else {
+        return '/pump-systems/'
+      }
     }
   }
 }

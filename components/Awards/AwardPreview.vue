@@ -1,5 +1,4 @@
 <template>
-  <!-- <nuxt-link :to="'/awards/' + award.id"> -->
   <div class="award" @click="$emit('awardToggle')">
     <figure class="framed">
       <img
@@ -18,7 +17,6 @@
       <li class="truncate">{{ award.date }}</li>
     </ul>
   </div>
-  <!-- </nuxt-link> -->
 </template>
 
 <script>
@@ -81,20 +79,19 @@ figure.framed {
     }
   }
 }
-.absolute-center {
-  margin: auto;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-}
 .truncate {
-  width: 35vw;
+  width: 90%;
   margin: auto;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  @media screen and (min-width: 360px) {
+    width: 35vw;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 20vw;
+  }
 }
 
 ul {

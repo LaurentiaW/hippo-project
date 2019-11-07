@@ -318,3 +318,16 @@ section {
   font-style: italic;
   text-decoration: underline;
 }
+
+.absolute-center {
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.relative {
+  position: relative;
+}

@@ -51,6 +51,7 @@ export default {
       pumpSystems: [
         {
           title: 'High Head Series Submersible Pumping System',
+          id: 'high-head-series-submersible-pumping-system',
           objective:
             'To pump liquid containing solids at a high head using several submersible pumps in series',
           summary: 'Mine dewatering, in particular shaft bottom dewatering',
@@ -66,6 +67,7 @@ export default {
         },
         {
           title: 'Flameproof Submersible Slurry Pump System',
+          id: 'flameproof-submersible-slurry-pump-pump-system',
           objective:
             'Overcoming the transport obstacles of pumping liquids out of confined underground flameproof areas',
           summary:

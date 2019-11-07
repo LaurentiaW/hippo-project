@@ -1,9 +1,8 @@
 <template>
   <div>
-    <p>Single Pump page {{ $route.name }}</p>
-    <AppHero :tagline="tagline" :slogan="slogan" />
+    <AppHero :tagline="pump.tagline" :slogan="pump.slogan" />
     <main>
-      <AppSectionHeading :heading="heading" />
+      <AppSectionHeading :heading="pump.heading" />
       <div class="product-grid">
         <div class="intro">
           <h4>Type: {{ pump.type }}</h4>
@@ -111,9 +110,6 @@ export default {
   data() {
     return {
       titleCase,
-      tagline: 'THE HIPPO SLURRY PUMP RANGE',
-      slogan: 'THE AWARD WINNING HEAVY DUTY PUMP RANGE',
-      heading: 'SUBMERSIBLE BOTTOM SUCTION',
       pump: {
         tagline: 'Submersible Bottom Suction Slurry Pump',
         slogan: 'The Problem Solver',
@@ -228,6 +224,19 @@ export default {
 
   .side {
     grid-area: diagram;
+    img {
+      max-height: 80vh;
+      @media (min-width: 768px) {
+        max-height: initial;
+        width: 100%;
+      }
+      display: block;
+      width: auto;
+      margin: {
+        left: auto;
+        right: auto;
+      }
+    }
   }
 
   .intro {
@@ -240,20 +249,6 @@ export default {
 
   .additional-content {
     grid-area: additional-content;
-  }
-
-  img {
-    max-height: 80vh;
-    @media (min-width: 768px) {
-      max-height: initial;
-      width: 100%;
-    }
-    display: block;
-    width: auto;
-    margin: {
-      left: auto;
-      right: auto;
-    }
   }
   // .section {
   //   margin-top: 2rem;

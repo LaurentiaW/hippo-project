@@ -59,10 +59,10 @@
             />
           </ul>
         </div>
-        <button class="request-quote">
+        <nuxt-link to="/Contact" class="btn request-quote">
           request <br />
           a quote
-        </button>
+        </nuxt-link>
       </header>
     </div>
   </div>

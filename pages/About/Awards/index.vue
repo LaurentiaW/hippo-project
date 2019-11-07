@@ -77,25 +77,20 @@ export default {
       ]
     }
   }
-  // methods: {
-  //   showModal() {
-  //     this.isModalVisible = true
-  //   },
-  //   closeModal() {
-  //     this.isModalVisible = false
-  //   }
-  // }
 }
 </script>
 
 <style lang="scss" scoped>
 section {
-  position: relative;
   .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 1rem;
+    @media screen and (min-width: 360px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 1rem;
+    }
+    @media screen and (min-width: 768px) {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
   }
 }
 </style>

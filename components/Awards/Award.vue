@@ -2,8 +2,10 @@
   <div class="award-wrapper">
     <div v-if="show" class="modal-backdrop" @click="$emit('close')"></div>
     <div v-if="show" class="award">
-      <div class="award">
-        <i class="icon icon-close" @click="$emit('close')">X</i>
+      <div>
+        <i class="icon icon-close" @click="$emit('close')">
+          <CloseIcon name="brand-close" />
+        </i>
         <figure class="framed">
           <img src="/img/awards/1.png" alt="award name" />
         </figure>
@@ -19,8 +21,13 @@
 </template>
 
 <script>
+import CloseIcon from '@/components/Icons/CloseIcon'
+
 export default {
   name: 'Award',
+  components: {
+    CloseIcon
+  },
   props: {
     show: {
       type: Boolean,
@@ -31,34 +38,39 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.sidenav-backdrop {
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: 1000;
-  position: fixed;
-  top: 0;
-  left: 0;
+main {
+  position: relative;
 }
 .award {
   width: 95vw;
+  max-width: 700px;
   background-color: var(--white);
   z-index: 10000;
-  position: absolute;
-  top: 1rem;
-  left: 0;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   box-sizing: border-box;
   padding: 30px;
+  @media screen and (min-width: 450px) {
+    width: 85vw;
+  }
   i.icon {
     font-style: normal;
     font-size: 1.5rem;
     color: var(--main-clr);
     position: absolute;
-    top: 0;
+    top: 1rem;
     right: 1rem;
   }
   figure {
     margin-top: 2rem;
+    img {
+      max-width: 300px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 }
 </style>
