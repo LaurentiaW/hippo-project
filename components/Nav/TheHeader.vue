@@ -59,7 +59,7 @@
             />
           </ul>
         </div>
-        <nuxt-link to="/Contact" class="btn request-quote">
+        <nuxt-link v-if="contact" to="/Contact" class="btn request-quote">
           request <br />
           a quote
         </nuxt-link>
@@ -78,6 +78,12 @@ export default {
     TheSideNavToggle,
     SubNavLinks,
     TheLogo
+  },
+  props: {
+    contact: {
+      type: Boolean,
+      default: true
+    }
   },
   data() {
     return {

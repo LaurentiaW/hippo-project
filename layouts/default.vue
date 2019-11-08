@@ -1,6 +1,9 @@
 <template>
   <div>
-    <TheHeader @sidenavToggle="displaySidenav = !displaySidenav" />
+    <TheHeader
+      :contact="$route.name === 'Contact' ? false : true"
+      @sidenavToggle="displaySidenav = !displaySidenav"
+    />
     <TheSidenav :show="displaySidenav" @close="displaySidenav = false" />
     <nuxt />
     <AppFooter />
@@ -21,6 +24,8 @@ export default {
   data() {
     return {
       displaySidenav: false
+      // displayContactBtn: true,
+      // link: this.$route.name
     }
   },
   head() {
