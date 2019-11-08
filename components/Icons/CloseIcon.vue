@@ -34,9 +34,7 @@ export default {
 </script>
 
 <style scoped>
-/* #invert-logo {
-  /* --animal-clr: var(--main-clr); 
-  --animal-clr: rgba(247, 170, 41, 0.54);
-  --brand-clr: var(--white);
-} */
+#comp-close {
+  --brand: var(--comp-clr);
+}
 </style>

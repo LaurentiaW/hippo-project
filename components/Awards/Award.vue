@@ -4,7 +4,7 @@
     <div v-if="show" class="award">
       <div>
         <i class="icon icon-close" @click="$emit('close')">
-          <CloseIcon name="brand-close" />
+          <CloseIcon name="comp-close" />
         </i>
         <figure class="framed">
           <img
@@ -51,12 +51,6 @@ export default {
       landscape: 'landscape'
     }
   }
-  // computed: {
-  //   isPortrait() {
-  //     /*eslint-disable */
-  //     return this.$props.selectedAwardIsPortrait
-  //   }
-  // }
 }
 </script>
 
@@ -79,9 +73,6 @@ main {
     width: 85vw;
   }
   i.icon {
-    font-style: normal;
-    font-size: 1.5rem;
-    color: var(--main-clr);
     position: absolute;
     top: 1rem;
     right: 1rem;

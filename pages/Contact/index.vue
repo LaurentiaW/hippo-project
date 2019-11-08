@@ -8,13 +8,13 @@
         <p>
           Need to get in contact with anyone from our team? Complete the contact
           form below or send us an email at
-          <a href="mailto:info@hipposlurrypumps.com"
+          <a class="emphasize" href="mailto:info@hipposlurrypumps.com"
             >info@hipposlurrypumps.com</a
           >
-          or if you
+          <!-- or if you
           <nuxt-link to="/contact/rfp" class="emphasize"
             >need a quote </nuxt-link
-          >- complete this form so that we can help you faster
+          >- complete this form so that we can help you faster -->
         </p>
         <div class="content">
           <form
