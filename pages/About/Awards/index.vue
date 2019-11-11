@@ -4,16 +4,24 @@
     <main>
       <section>
         <AppSectionHeading :heading="heading" />
-        <div class="grid">
+        <div v-if="awards" class="grid">
           <AwardPreview
-            v-for="(award, i) in awards"
-            :key="i"
-            :award="award"
+            v-for="award in awards"
+            :key="award.id"
+            :img="award.img"
+            :title="award.title"
+            :institution="award.institution"
+            :date="award.date"
+            :place="award.place"
             @awardSelect="onAwardSelect"
           />
         </div>
         <Award
-          :award="selectedAward"
+          :img="selectedImg"
+          :title="selectedTitle"
+          :institution="selectedInstitution"
+          :date="selectedDate"
+          :place="selectedPlace"
           :is-portrait="selectedAwardIsPortrait"
           :show="displayAward"
           @close="displayAward = false"
@@ -55,59 +63,49 @@ export default {
       slogan: 'The Hippo Trophy Room',
       heading: 'our awards',
       displayAward: false,
-      selectedAward: null,
+      selectedTitle: null,
+      selectedImg: null,
+      selectedInstitution: null,
+      selectedDate: null,
+      selectedPlace: null,
       selectedAwardIsPortrait: false,
-      awards: [
-        {
-          id: '1',
-          title: 'Award of Excellence',
-          date: '2017-05-25',
-          institution: 'South African Flame Proof Association',
-          category: 'Most Innovative Product or Engineering Solution',
-          place: 'runner up',
-          img: '/img/awards/1.png'
-        },
-        {
-          id: '2',
-          title: '3rd Annual SA Premier Business Awards 2014/2015',
-          date: '2015-04-09',
-          institution: 'the dti (Department of Trade and Industries)',
-          category: 'SMME Category',
-          place: 'Winner',
-          img: '/img/awards/2.png'
-        },
-        {
-          id: '3',
-          title: 'Award of Excellence',
-          date: '2017-05-25',
-          institution: 'South African Flame Proof Association',
-          category: 'Most Innovative Product or Engineering Solution',
-          place: 'runner up',
-          img: '/img/awards/1.png'
-        },
-        {
-          id: '4',
-          title: '3rd Annual SA Premier Business Awards 2014/2015',
-          date: '2015-04-09',
-          institution: 'the dti (Department of Trade and Industries)',
-          category: 'SMME Category',
-          place: 'Winner',
-          img: '/img/awards/2.png'
-        }
-      ]
+      awards: []
     }
   },
+  asyncData(context) {
+    return context.app.$storyapi
+      .get('cdn/stories', {
+        version: 'draft',
+        starts_with: 'about/awards/'
+      })
+      .then(response => {
+        /* eslint-disable */
+        console.log(response)
+        return {
+          awards: response.data.stories.map(award => {
+            return {
+              id: award.id,
+              img: award.content.img,
+              title: award.content.title,
+              institution: award.content.institution,
+              date: award.content.date,
+              place: award.content.place
+            }
+          })
+        }
+      })
+  },
   methods: {
-    onAwardSelect(award, isPortrait) {
-      // /*eslint-disable */
-      // console.log(award, isPortrait)
-      this.selectedAward = award
+    onAwardSelect(title, img, institution, date, place, isPortrait) {
+      /*eslint-disable */
+      console.log(title, img, institution, date, place, isPortrait)
+      this.selectedTitle = title
+      this.selectedImg = img
+      this.selectedInstitution = institution
+      this.selectedDate = date
+      this.selectedPlace = place
       this.displayAward = true
       this.selectedAwardIsPortrait = isPortrait
-      // if (selectedAward != null) {
-      //   /*eslint-disable */
-      //   console.log(selectedAward, selectedAwardIsPortrait)
-      // }
     }
   }
 }

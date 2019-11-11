@@ -1,5 +1,5 @@
 <template>
-  <div v-if="award" class="award-wrapper">
+  <div v-if="title" class="award-wrapper">
     <div v-if="show" class="modal-backdrop" @click="$emit('close')"></div>
     <div v-if="show" class="award">
       <div>
@@ -8,18 +8,18 @@
         </i>
         <figure class="framed">
           <img
-            :src="award.img"
-            :alt="award.title"
+            :src="img"
+            :alt="title"
             :class="[isPortrait === true ? portrait : landscape]"
           />
         </figure>
         <ul class="center">
-          <li>{{ award.place }}</li>
+          <li>{{ place }}</li>
           <li>
-            <h4 class="upper">{{ award.title }}</h4>
+            <h4 class="upper">{{ title }}</h4>
           </li>
-          <li>{{ award.institution }}</li>
-          <li>{{ award.date }}</li>
+          <li>{{ institution }}</li>
+          <li>{{ date }}</li>
         </ul>
       </div>
     </div>
@@ -43,7 +43,26 @@ export default {
       type: Boolean,
       default: false
     },
-    award: Object
+    img: {
+      type: String,
+      default: '/img/awards/placeholder.png'
+    },
+    title: {
+      type: String,
+      default: 'Award- Title'
+    },
+    institution: {
+      type: String,
+      default: 'Institution'
+    },
+    date: {
+      type: String,
+      default: 'date'
+    },
+    place: {
+      type: String,
+      default: 'place'
+    }
   },
   data() {
     return {

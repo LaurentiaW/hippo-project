@@ -3,18 +3,18 @@
     <figure class="framed">
       <img
         ref="certificate"
-        :src="award.img"
-        :alt="award.title"
+        :src="img"
+        :alt="title"
         :class="isPortrait ? portrait : landscape"
         class="absolute-center"
       />
     </figure>
     <ul class="center">
       <li>
-        <h4 class="truncate upper">{{ award.title }}</h4>
+        <h4 class="truncate upper">{{ title }}</h4>
       </li>
-      <li class="truncate">{{ award.institution }}</li>
-      <li class="truncate">{{ award.date }}</li>
+      <li class="truncate">{{ institution }}</li>
+      <li class="truncate">{{ date }}</li>
     </ul>
   </div>
 </template>
@@ -23,7 +23,26 @@
 export default {
   name: 'AwardPreview',
   props: {
-    award: Object
+    img: {
+      type: String,
+      default: '/img/awards/placeholder.png'
+    },
+    title: {
+      type: String,
+      default: 'Award- Title'
+    },
+    institution: {
+      type: String,
+      default: 'Institution'
+    },
+    date: {
+      type: String,
+      default: 'date'
+    },
+    place: {
+      type: String,
+      default: 'place'
+    }
   },
   data() {
     return {
@@ -56,7 +75,15 @@ export default {
       }
     },
     onAwardSelect() {
-      this.$emit('awardSelect', this.award, this.isPortrait)
+      this.$emit(
+        'awardSelect',
+        this.img,
+        this.title,
+        this.institution,
+        this.date,
+        this.place,
+        this.isPortrait
+      )
     }
   }
 }
