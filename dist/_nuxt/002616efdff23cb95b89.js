@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{372:function(n,e,t){"use strict";t.r(e);var c={},r=t(2),component=Object(r.a)(c,(function(){var n=this.$createElement;return(this._self._c||n)("div",[this._v("\n  Individual Award Page\n")])}),[],!1,null,"c12a9f2a",null);e.default=component.exports}}]);

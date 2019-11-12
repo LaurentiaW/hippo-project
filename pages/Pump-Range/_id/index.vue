@@ -124,9 +124,12 @@ export default {
     }
   },
   asyncData(context) {
+    const version =
+      context.query._storyblok || context.isDev ? 'draft' : 'published'
+
     return context.app.$storyapi
       .get('cdn/stories/pump-range/' + context.params.id, {
-        version: 'draft'
+        version
       })
       .then(response => {
         /* eslint-disable */

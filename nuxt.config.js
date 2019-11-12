@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 export default {
   mode: 'universal',
   /*
@@ -47,10 +49,16 @@ export default {
    */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    // '@nuxtjs/axios',
+    '@nuxtjs/axios',
     [
       'storyblok-nuxt',
-      { accessToken: 'Khc5nKoQhPSI8dxrzxvslgtt', cacheProvider: 'memory' }
+      {
+        accessToken:
+          process.env.NODE_ENV === 'production'
+            ? 'zQEriApQaVRdZjrrZuctlgtt'
+            : 'Khc5nKoQhPSI8dxrzxvslgtt',
+        cacheProvider: 'memory'
+      }
     ]
   ],
   /*
@@ -68,10 +76,36 @@ export default {
     extend(config, ctx) {}
   },
   generate: {
-    routes: [
-      'pump-range/hippo-submersible-bottom-suction-slurry-pump',
-      '/pump-range/hippo-submersible-top-suction-slurry-pump',
-      '/pump-range/hippo-vertical-spindle-vortex-slurry-pump'
-    ]
+    routes(callback) {
+      const token = `zQEriApQaVRdZjrrZuctlgtt`
+      const version = 'published'
+      let cacheVersion = 0
+
+      // other routes that are not in Storyblok with their slug.
+      const routes = ['/'] // adds / directly
+
+      // Load space and receive latest cache version key to improve performance
+      axios
+        .get(`https://api.storyblok.com/v1/cdn/spaces/me?token=${token}`)
+        .then(spaceRes => {
+          // timestamp of latest publish
+          cacheVersion = spaceRes.data.space.version
+
+          // Call for all Links using the Links API: https://www.storyblok.com/docs/Delivery-Api/Links
+          axios
+            .get(
+              `https://api.storyblok.com/v1/cdn/links?token=${token}&version=${version}&cv=${cacheVersion}`
+            )
+            .then(res => {
+              Object.keys(res.data.links).forEach(key => {
+                if (res.data.links[key].slug !== 'home') {
+                  routes.push('/' + res.data.links[key].slug)
+                }
+              })
+
+              callback(null, routes)
+            })
+        })
+    }
   }
 }

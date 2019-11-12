@@ -66,9 +66,12 @@ export default {
     }
   },
   asyncData(context) {
+    const version =
+      context.query._storyblok || context.isDev ? 'draft' : 'published'
+
     return context.app.$storyapi
       .get('cdn/stories', {
-        version: 'draft',
+        version,
         starts_with: 'about/awards/'
       })
       .then(response => {
