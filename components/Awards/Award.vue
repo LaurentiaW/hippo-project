@@ -1,5 +1,5 @@
 <template>
-  <div v-if="title" class="award-wrapper">
+  <div v-if="award" class="award-wrapper">
     <div v-if="show" class="modal-backdrop" @click="$emit('close')"></div>
     <div v-if="show" class="award">
       <div>
@@ -8,18 +8,18 @@
         </i>
         <figure class="framed">
           <img
-            :src="img"
-            :alt="title"
+            :src="award.content.img"
+            :alt="award.content.title"
             :class="[isPortrait === true ? portrait : landscape]"
           />
         </figure>
         <ul class="center">
-          <li>{{ place }}</li>
+          <li>{{ award.content.place }}</li>
           <li>
-            <h4 class="upper">{{ title }}</h4>
+            <h4 class="upper">{{ award.content.title }}</h4>
           </li>
-          <li>{{ institution }}</li>
-          <li>{{ date }}</li>
+          <li>{{ award.content.institution }}</li>
+          <li>{{ award.content.date }}</li>
         </ul>
       </div>
     </div>
@@ -43,26 +43,27 @@ export default {
       type: Boolean,
       default: false
     },
-    img: {
-      type: String,
-      default: '/img/awards/placeholder.png'
-    },
-    title: {
-      type: String,
-      default: 'Award- Title'
-    },
-    institution: {
-      type: String,
-      default: 'Institution'
-    },
-    date: {
-      type: String,
-      default: 'date'
-    },
-    place: {
-      type: String,
-      default: 'place'
-    }
+    // img: {
+    //   type: String,
+    //   default: '/img/awards/placeholder.png'
+    // },
+    // title: {
+    //   type: String,
+    //   default: 'Award- Title'
+    // },
+    // institution: {
+    //   type: String,
+    //   default: 'Institution'
+    // },
+    // date: {
+    //   type: String,
+    //   default: 'date'
+    // },
+    // place: {
+    //   type: String,
+    //   default: 'place'
+    // }
+    award: Object
   },
   data() {
     return {

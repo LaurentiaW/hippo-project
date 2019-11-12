@@ -8,20 +8,12 @@
           <AwardPreview
             v-for="award in awards"
             :key="award.id"
-            :img="award.img"
-            :title="award.title"
-            :institution="award.institution"
-            :date="award.date"
-            :place="award.place"
+            :award="award"
             @awardSelect="onAwardSelect"
           />
         </div>
         <Award
-          :img="selectedImg"
-          :title="selectedTitle"
-          :institution="selectedInstitution"
-          :date="selectedDate"
-          :place="selectedPlace"
+          :award="selectedAward"
           :is-portrait="selectedAwardIsPortrait"
           :show="displayAward"
           @close="displayAward = false"
@@ -63,13 +55,8 @@ export default {
       slogan: 'The Hippo Trophy Room',
       heading: 'our awards',
       displayAward: false,
-      selectedTitle: null,
-      selectedImg: null,
-      selectedInstitution: null,
-      selectedDate: null,
-      selectedPlace: null,
-      selectedAwardIsPortrait: false,
-      awards: []
+      selectedAward: null,
+      selectedAwardIsPortrait: false
     }
   },
   asyncData(context) {
@@ -82,28 +69,13 @@ export default {
         /* eslint-disable */
         console.log(response)
         return {
-          awards: response.data.stories.map(award => {
-            return {
-              id: award.id,
-              img: award.content.img,
-              title: award.content.title,
-              institution: award.content.institution,
-              date: award.content.date,
-              place: award.content.place
-            }
-          })
+          awards: response.data.stories
         }
       })
   },
   methods: {
-    onAwardSelect(title, img, institution, date, place, isPortrait) {
-      /*eslint-disable */
-      console.log(title, img, institution, date, place, isPortrait)
-      this.selectedTitle = title
-      this.selectedImg = img
-      this.selectedInstitution = institution
-      this.selectedDate = date
-      this.selectedPlace = place
+    onAwardSelect(award, isPortrait) {
+      this.selectedAward = award
       this.displayAward = true
       this.selectedAwardIsPortrait = isPortrait
     }
