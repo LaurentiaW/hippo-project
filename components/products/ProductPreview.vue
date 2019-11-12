@@ -1,8 +1,8 @@
 <template>
-  <nuxt-link :to="productLink + pump.id">
+  <nuxt-link :to="productLink + id">
     <div class="card">
-      <img :src="pump.img" :alt="pump.title" class="framed" />
-      <div class="title-wrapper">
+      <img :src="img" :alt="title" class="framed" />
+      <div v-if="title" class="title-wrapper">
         <h4>
           {{ sectionHead[0] }}
         </h4>
@@ -19,7 +19,18 @@ import { strSplit } from '@/mixins/strSplit.js'
 
 export default {
   props: {
-    pump: Object
+    img: {
+      type: String,
+      default: '/img/awards/placeholder.png'
+    },
+    title: {
+      type: String,
+      default: 'product - Title'
+    },
+    id: {
+      type: String,
+      default: 'product-name'
+    }
   },
   data() {
     return {
@@ -29,7 +40,7 @@ export default {
   },
   computed: {
     sectionHead() {
-      return strSplit(this.pump.title)
+      return strSplit(this.$props.title)
     },
     productLink() {
       if (this.link.includes('Range')) {

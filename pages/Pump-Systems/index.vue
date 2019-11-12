@@ -6,9 +6,11 @@
         <AppSectionHeading :heading="heading" />
         <div class="grid">
           <ProductPreview
-            v-for="(pump, i) in pumpSystems"
-            :key="i"
-            :pump="pump"
+            v-for="pump in pumpSystems"
+            :id="pump.id"
+            :key="pump.id"
+            :title="pump.title"
+            :img="pump.img"
           />
         </div>
       </section>

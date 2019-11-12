@@ -5,44 +5,17 @@
       <section class="profile">
         <AppSectionHeading :heading="heading" />
         <div class="about flex">
-          <p>
-            This content needs to be provided still Lorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Possimus quaerat mollitia ducimus,
-            molestiae itaque ut et pariatur? Illo exercitationem, magnam
-            consectetur deleniti inventore nobis, accusamus repudiandae ullam
-            aspernatur aliquid quae iusto dolor velit omnis enim quas, esse nisi
-            rerum necessitatibus?
-            <br />
-            Fugiat ducimus maxime magni corrupti. Fugiat cupiditate libero
-            dolores pariatur, possimus quaerat magni explicabo animi ad ut
-            eligendi repellendus error, est laudantium velit dignissimos vel
-            reprehenderit minima natus amet et, dolorum delectus repudiandae.
-            Commodi voluptatibus quasi deserunt quidem, perspiciatis possimus
-            voluptatem quisquam quam culpa velit eveniet maiores, sed asperiores
-            dignissimos ut, iure veniam consectetur sunt quia quaerat vel
-            quibusdam. Vitae sint excepturi distinctio reprehenderit dolorum
-            similique, magni dolor nulla qui aliquam officiis ducimus eius
-            veniam. Quam rerum nisi facere velit, vitae eum dolorem natus ipsum
-            quae, ipsa fuga facilis debitis aliquam sit maiores? Odio inventore,
-            nulla dolorum corporis quibusdam rerum ex, exercitationem commodi
-            harum corrupti eum sit. Saepe, facilis eos.
-          </p>
-          <div class="images">
-            <div class="img">
-              <h4 class="upper center">family portret</h4>
-              <img
-                src="/img/pumping-systems.jpg"
-                alt="Hippo Slurry Pumps designs pumping systems to address customers needs"
-                class="framed"
-              />
-            </div>
-            <div class="img">
-              <h4 class="upper center">family portret</h4>
-              <img
-                src="/img/pumping-systems.jpg"
-                alt="Hippo Slurry Pumps designs pumping systems to address customers needs"
-                class="framed"
-              />
+          <div class="text-wrapper">
+            <p v-for="(p, i) in intro_paragraph" :key="i">
+              {{ p.text }}
+            </p>
+          </div>
+          <div class="images-wrapper">
+            <div v-for="(img, i) in intro_images" :key="i" class="images">
+              <div class="img">
+                <h4 class="upper center">{{ img.image_title }}</h4>
+                <img :src="img.image" :alt="img.image_title" class="framed" />
+              </div>
             </div>
           </div>
         </div>
@@ -64,20 +37,16 @@
         <AppSectionHeading :heading="headingAwards" />
         <div class="flex">
           <div class="img-wrapper">
-            <h4 class="upper center">The Hippo Trophy Room</h4>
+            <h4 class="upper center">{{ awards_room.image_title }}</h4>
             <figure class="framed">
-              <img
-                src="/img/awards/trophy-wall.jpg"
-                alt="The Hippo Trophy Room"
-              />
+              <img :src="awards_room.image" :alt="awards_room.image_title" />
             </figure>
           </div>
           <p>
             <nuxt-link to="/about/awards">
-              All of our hard work and ideas are not just appreciated by our
-              customers and partners but have also been recognised by various
-              institutions. Why not <span class="emphasize">visit</span> visit
-              our trophy room to see our accomplishments
+              <p>
+                {{ awards_room_content }}
+              </p>
             </nuxt-link>
           </p>
         </div>
@@ -85,9 +54,7 @@
       <section class="news">
         <AppSectionHeading :heading="headingNews" />
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora
-          ratione non animi impedit natus nesciunt architecto ullam delectus
-          fugiat. Impedit.
+          {{}}
         </p>
         <a
           href="http://www.miningweekly.com/page/press-office-home/company:hazleton-pumps-2017-01-31"
@@ -134,31 +101,48 @@ export default {
       heading: 'ABOUT HIPPO SLURRY PUMPS',
       headingHistory: 'THE HIPPO TIME LINE',
       headingAwards: 'Our Awards',
-      headingNews: 'The News Room',
-      boxes: [
-        {
-          img:
-            'https://images.pexels.com/photos/716661/pexels-photo-716661.jpeg',
-          heading: 'FOUNDED IN',
-          details:
-            "Using our years of experience in the pumping industry we examine our client's objective to make sure the end result will be successfully achieved"
-        },
-        {
-          img:
-            'https://images.pexels.com/photos/1260309/pexels-photo-1260309.jpeg',
-          heading: 'SIGNIFICANT EVENTS',
-          details:
-            'We custom engineer the best solution using our award winning Hippo Slurry Pump Range built to IES standards with the most appropriate materials '
-        },
-        {
-          img:
-            'https://images.pexels.com/photos/38600/construction-worker-concrete-hummer-vibrator-38600.jpeg',
-          heading: 'AWARD WINNING SOLUTIONS',
-          details:
-            "After testing and quality assurance has made sure the solution perform as needed we install the solution and monitor with our clients whether the client's initial objective has been met "
-        }
-      ]
+      headingNews: 'The News Room ',
+      story: { content: {} }
     }
+  },
+  asyncData(context) {
+    // Check if we are in the editor mode
+    const version =
+      context.query._storyblok || context.isDev ? 'draft' : 'published'
+
+    // Load the JSON from the API
+    return context.app.$storyapi
+      .get('cdn/stories/about', {
+        version
+      })
+      .then(response => {
+        /* eslint-disable */
+        console.log(response.data)
+        return {
+          intro_paragraph: [
+            response.data.story.content.body[0],
+            response.data.story.content.body[1]
+          ],
+          intro_images: [
+            response.data.story.content.body[2],
+            response.data.story.content.body[3]
+          ],
+          boxes: [
+            response.data.story.content.body[4],
+            response.data.story.content.body[5],
+            response.data.story.content.body[6]
+          ],
+          awards_room: response.data.story.content.body[10],
+          awards_room_content: response.data.story.content.body[7].text,
+          news_room: response.data.story.content.body[9]
+        }
+      })
+      .catch(response => {
+        context.error({
+          statusCode: response.response.status,
+          message: res.response.data
+        })
+      })
   }
 }
 </script>
@@ -192,5 +176,9 @@ export default {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: 1rem;
   }
+}
+
+p {
+  white-space: pre-line;
 }
 </style>

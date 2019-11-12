@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <AppHero :tagline="pump.tagline" :slogan="pump.slogan" />
+  <div v-if="pump">
+    <AppHero :tagline="pump.hero[0].tagline" :slogan="pump.hero[0].slogan" />
     <main>
-      <AppSectionHeading :heading="pump.heading" />
+      <AppSectionHeading :heading="pump.title" />
       <div class="product-grid">
         <div class="intro">
           <h4>Type: {{ pump.type }}</h4>
@@ -11,45 +11,52 @@
         <figure class="side">
           <img :src="pump.img" :alt="`diagram of the ${pump.title}`" />
         </figure>
-        <div class="design-features section">
+        <div v-if="pump.design_features" class="design-features section">
           <h4>Design Features</h4>
           <ul>
-            <li v-for="feature in pump.designFeatures" :key="feature.key">
+            <li v-for="feature in pump.design_features" :key="feature.key">
               {{ feature.key }}: {{ feature.feature }}
             </li>
           </ul>
         </div>
         <div class="additional-content">
-          <div class="benefits section">
+          <div v-if="pump.benefits" class="benefits section">
             <h4>Benefits</h4>
             <ul>
               <li v-for="(benefit, i) in pump.benefits" :key="i">
-                {{ i + 1 }}. {{ benefit }}
+                {{ i + 1 }}. {{ benefit.text }}
               </li>
             </ul>
           </div>
 
-          <div v-if="pump.application" class="application section">
+          <section
+            v-if="pump.application.length > 0"
+            class="application section"
+          >
+            <!-- <AppSectionHeading heading="Application" /> -->
             <h4>Application</h4>
             <div class="flex">
               <figure
-                v-for="(img, i) in pump.applicaiton"
+                v-for="(img, i) in pump.application"
                 :key="i"
                 class="framed"
               >
                 <img
-                  :src="img.img"
-                  :alt="`an image of a ${pump.title} in operation ${img.text}`"
+                  :src="img.image"
+                  :alt="
+                    `an image of a ${title} in operation ${img.image_title}`
+                  "
                 />
+                <figcaption class="center">{{ img.image_title }}</figcaption>
               </figure>
             </div>
-          </div>
+          </section>
 
-          <div v-if="pump.alternativeAgitator.images" class="section">
-            <AppSectionHeading :heading="pump.alternativeAgitator.title" />
+          <section v-if="pump.alternative_agitator" class="section">
+            <AppSectionHeading :heading="headings.alternativeAgitator" />
             <div class="flex">
               <figure
-                v-for="(img, i) in pump.alternativeAgitator.images"
+                v-for="(img, i) in pump.alternative_agitator"
                 :key="i"
                 class="framed"
               >
@@ -57,25 +64,24 @@
                 <figcaption class="center">{{ img.title }}</figcaption>
               </figure>
             </div>
-          </div>
+          </section>
 
-          <div v-if="pump.pumpData" class="pump-data">
-            <AppSectionHeading :heading="pump.pumpData.title" />
-          </div>
-
-          <div class="pump-curves">
-            <AppSectionHeading :heading="pump.pumpCurves.title" />
+          <section class="pump-data">
+            <AppSectionHeading :heading="headings.pumpData" />
+          </section>
+          <section class="pump-curves">
+            <AppSectionHeading :heading="headings.pumpCurves" />
             <div class="flex">
               <figure
-                v-for="(img, i) in pump.pumpCurves.images"
+                v-for="(img, i) in pump.pump_curves"
                 :key="i"
                 class="framed"
               >
-                <img :src="img.img" :alt="img.title" />
+                <img :src="img.pump_curve" :alt="img.title" />
                 <figcaption class="center">{{ img.title }}</figcaption>
               </figure>
             </div>
-          </div>
+          </section>
         </div>
       </div>
     </main>
@@ -110,96 +116,25 @@ export default {
   data() {
     return {
       titleCase,
-      pump: {
-        tagline: 'Submersible Bottom Suction Slurry Pump',
-        slogan: 'The Problem Solver',
-        title: 'Submersible Bottom Suction',
-        type: 'SB',
-        configuration: 'Submersible',
-        description:
-          'The "go to" pump when you are stuck with a complex slurry and dewatering application The top suction design is used to pump excess liquid away while the maximum amount of solids remain in the sump to be removed mechanically',
-        id: 'hippo-submersible-bottom-suction-slurry-pump',
-        img:
-          'https://hazletonpumps.co.za/wp-content/uploads/2017/07/Submersible-Bottom-Suction-diagram-cut-through-147x300.jpg',
-        designFeatures: [
-          {
-            key: 'a',
-            feature:
-              'Lifting Bracket allows lowering of the pump while in operation'
-          },
-          {
-            key: 'b',
-            feature:
-              'Terminal Cover and cables are epoxy sealed to prevent moisture entering should the cables be damaged'
-          },
-          {
-            key: 'c',
-            feature:
-              'Angular contact bearings mounted back-to-back which restricts all axial movement should the pump be surging'
-          },
-          {
-            key: 'd',
-            feature:
-              'Stator Motor designed to operate at any supply voltage and is vacuum impregnated'
-          },
-          {
-            key: 'e',
-            feature:
-              'Discharge pumped into jacketed motor enclosure assisting to dissipate any heat built up'
-          },
-          {
-            key: 'f',
-            feature:
-              'Oil-filled motor housing lubricates the bearing and mechanical seals and dissipates the heat away from the winding'
-          },
-          {
-            key: 'g',
-            feature:
-              'Double mechanical seals with moisture detector operate at submergence pressure'
-          },
-          {
-            key: 'h',
-            feature:
-              'Cantilever shaft separates the motor from the pump end resulting in the mechanical seal operating at submergence pressure and not at discharge pressure'
-          },
-          {
-            key: 'i',
-            feature:
-              'Twin volute discharge balances all the radial forces on the shaft improving the bearing life'
-          }
-        ],
-        benefits: [
-          'Designed to efficiently and effectively pump high density abrasive and corrosive slurries',
-          'Proven reliability as a result of unique design features',
-          'Can operate at partial flow and can "run dry" continuously'
-        ],
-        alternativeAgitator: {
-          title: 'Alternative Agitator',
-          images: [
-            {
-              img:
-                'https://hazletonpumps.co.za/wp-content/uploads/2017/07/sbo.png',
-              title: 'type sbo-open vane impeller with agitator'
-            },
-            {
-              img:
-                'https://hazletonpumps.co.za/wp-content/uploads/2017/07/sbc.png',
-              title: 'type sbc-open vane impeller with agitator'
-            }
-          ]
-        },
-        pumpCurves: {
-          title: 'Pump Curves',
-          images: [
-            {
-              img:
-                'https://hazletonpumps.co.za/wp-content/uploads/2017/08/medium-2p-50hz.jpg',
-              title: 'Medium 2pole 50hz'
-            }
-          ]
-        }
+      headings: {
+        pumpCurves: 'Pump Curves',
+        alternativeAgitator: 'Alternative Agitator',
+        pumpData: 'Pump Data'
       }
     }
+  },
+  asyncData(context) {
+    return context.app.$storyapi
+      .get('cdn/stories/pump-range/' + context.params.id, {
+        version: 'draft'
+      })
+      .then(response => {
+        /* eslint-disable */
+        console.log(response.data)
+        return {
+          pump: response.data.story.content
+        }
+      })
   },
   computed: {
     id() {
@@ -264,6 +199,17 @@ export default {
   .flex {
     display: flex;
     justify-content: space-between;
+  }
+  .application {
+    figure {
+      img {
+        height: 50vh;
+        width: auto;
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+      }
+    }
   }
 }
 </style>

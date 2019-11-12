@@ -4,11 +4,13 @@
     <main>
       <section>
         <AppSectionHeading :heading="submersibleHeading" />
-        <div class="grid">
+        <div v-if="pumps" class="grid">
           <ProductPreview
-            v-for="(pump, i) in submersibleConfig"
-            :key="i"
-            :pump="pump"
+            v-for="pump in submersibleConfig"
+            :id="pump.id"
+            :key="pump.id"
+            :title="pump.title"
+            :img="pump.img"
           />
         </div>
       </section>
@@ -16,9 +18,11 @@
         <AppSectionHeading :heading="verticalHeading" />
         <div class="grid">
           <ProductPreview
-            v-for="(pump, i) in verticalConfig"
-            :key="i"
-            :pump="pump"
+            v-for="pump in verticalConfig"
+            :id="pump.id"
+            :key="pump.id"
+            :title="pump.title"
+            :img="pump.img"
           />
         </div>
       </section>
@@ -58,42 +62,48 @@ export default {
       tagline: 'THE HIPPO SLURRY PUMP RANGE',
       slogan: 'THE AWARD WINNING HEAVY DUTY PUMP RANGE',
       submersibleHeading: 'SUBMERSIBLE CONFIGURATIONS',
-      verticalHeading: 'Vertical CONFIGURATIONS',
-      pumps: [
-        {
-          title: 'Submersible Bottom Suction Pump',
-          type: 'SB',
-          configuration: 'Submersible',
-          id: 'hippo-submersible-bottom-suction-slurry-pump',
-          img:
-            'https://hazletonpumps.co.za/wp-content/uploads/2017/07/Submersible-Bottom-Suction-diagram-cut-through-147x300.jpg'
-        },
-        {
-          title: 'Submersible Top Suction Pump',
-          type: 'ST',
-          configuration: 'Submersible',
-          id: 'hippo-submersible-top-suction-slurry-pump',
-          img:
-            'https://hazletonpumps.co.za/wp-content/uploads/2017/07/Submersible-Top-Suction-diagram-cut-through-161x300.jpg'
-        },
-        {
-          title: 'Vertical Spindle Vortex Pump',
-          type: 'VV',
-          configuration: 'Vertical',
-          id: 'hippo-vertical-spindle-vortex-slurry-pump',
-          img:
-            'https://hazletonpumps.co.za/wp-content/uploads/2017/07/Vertical-Vortex-diagram-cut-through-197x300.jpg'
-        }
-      ]
+      verticalHeading: 'Vertical CONFIGURATIONS'
     }
   },
   computed: {
     submersibleConfig() {
-      return this.pumps.filter(pump => pump.configuration === 'Submersible')
+      /* eslint-disable */
+      // console.log(`Pumps array ${pumps}`)
+      return this.pumps.filter(pump => pump.configuration === 'submersible')
     },
     verticalConfig() {
-      return this.pumps.filter(pump => pump.configuration === 'Vertical')
+      return this.pumps.filter(pump => pump.configuration === 'vertical')
     }
+  },
+  asyncData(context) {
+    return context.app.$storyapi
+      .get('cdn/stories', {
+        version: 'draft',
+        starts_with: 'pump-range/'
+      })
+      .then(response => {
+        /* eslint-disable */
+        console.log(response)
+        return {
+          pumps: response.data.stories.map(pump => {
+            return {
+              id: pump.slug,
+              title: pump.content.title,
+              img: pump.content.img,
+              slug: pump.full_slug,
+              configuration: pump.content.configuration,
+              description: pump.content.description,
+              type: pump.content.type,
+              tagline: pump.content.hero.tagline,
+              slogan: pump.content.hero.slogan,
+              benefits: pump.content.benefits,
+              designFeatures: pump.content.design_features,
+              name: pump.name,
+              application: pump.content.application
+            }
+          })
+        }
+      })
   }
 }
 </script>
