@@ -142,7 +142,7 @@ export default {
       .catch(response => {
         context.error({
           statusCode: response.response.status,
-          message: res.response.data
+          message: response.response.data
         })
       })
   },

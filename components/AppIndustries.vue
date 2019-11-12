@@ -3,8 +3,8 @@
     <AppSectionHeading :heading="heading" />
     <div class="grid">
       <article
-        v-for="industry in industries"
-        :key="industry.id"
+        v-for="(industry, i) in industries"
+        :key="i"
         class="industry-blok"
       >
         <div class="icon-wrapper">

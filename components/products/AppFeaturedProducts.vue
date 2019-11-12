@@ -2,14 +2,14 @@
   <section>
     <AppSectionHeading />
     <div class="flex">
-      <div class="pump-range">
+      <div v-if="pumpRange" class="pump-range">
         <nuxt-link to="/pump-range">
           <h4 class="upper center">{{ pumpRange.title }}</h4>
           <img :src="pumpRange.img" :alt="pumpRange.img_text" class="framed" />
         </nuxt-link>
       </div>
       <div class="divider"></div>
-      <div class="pump-systems">
+      <div v-if="pumpSystem" class="pump-systems">
         <nuxt-link to="/pump-systems">
           <h4 class="upper center">{{ pumpSystem.title }}</h4>
           <img
