@@ -25,49 +25,12 @@ export default {
   components: {
     AppSectionHeading
   },
+  props: {
+    industries: Object
+  },
   data() {
     return {
-      heading: 'EXPERIENCE INCLUDES',
-      industries: [
-        {
-          title: 'Mining',
-          text:
-            'All sectors of Mining & Mineral extraction: Coal, Platinum, Gold, Iron Ore & Diamonds',
-          id: 'mining',
-          img: '/svg/industries/mining.svg'
-        },
-        {
-          title: 'Chemical & Processing',
-          text:
-            'Including Oil Sands, Britton Tar, Petrochemical, fertilizer and explosive industries',
-          id: 'liquid',
-          img: '/svg/industries/chemical-processing.svg'
-        },
-        {
-          title: 'Power Generation, Municipal Services and Waste Management',
-          text: 'Ash, water treatment and waste disposal',
-          id: 'power',
-          img: '/svg/industries/powergeneration.svg'
-        },
-        {
-          title: 'Sand, Grave, Ceramic & General Constructions',
-          text: 'High concentration of abrasive solids',
-          id: 'quarry',
-          img: '/svg/industries/sand.svg'
-        },
-        {
-          title: 'Foundries & Steel Production',
-          text: 'Cooling, water returns & concentrated abrasive solids',
-          id: 'industrial',
-          img: '/svg/industries/foundries.svg'
-        },
-        {
-          title: 'Nuclear',
-          text: 'Specifically designed for high temperatures and contamination',
-          id: 'nuclear',
-          img: '/svg/industries/nuclear.svg'
-        }
-      ]
+      heading: 'EXPERIENCE INCLUDES'
     }
   }
 }

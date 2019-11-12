@@ -72,24 +72,15 @@ export default {
         starts_with: 'about/awards/'
       })
       .then(response => {
-        /* eslint-disable */
-        console.log(response)
         return {
           blok: response.data.stories,
           awards: response.data.stories
         }
       })
   },
-  methods: {
-    onAwardSelect(award, isPortrait) {
-      this.selectedAward = award
-      this.displayAward = true
-      this.selectedAwardIsPortrait = isPortrait
-    }
-  },
   mounted() {
     this.$storybridge.on(['input', 'published', 'change'], event => {
-      if (event.action == 'input') {
+      if (event.action === 'input') {
         if (event.story.id === this.story.id) {
           this.story.content = event.story.content
         }
@@ -97,6 +88,13 @@ export default {
         window.location.reload()
       }
     })
+  },
+  methods: {
+    onAwardSelect(award, isPortrait) {
+      this.selectedAward = award
+      this.displayAward = true
+      this.selectedAwardIsPortrait = isPortrait
+    }
   }
 }
 </script>

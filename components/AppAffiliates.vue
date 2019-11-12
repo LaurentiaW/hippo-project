@@ -20,36 +20,12 @@ export default {
   components: {
     AppSectionHeading
   },
+  props: {
+    associations: Object
+  },
   data() {
     return {
-      heading: 'ASSOCIATIONS & AFFILIATES',
-      associations: [
-        {
-          logo: '/logos/saceec.png',
-          title: 'South Africa Capital Equipment Export Council',
-          url: 'https://www.saceec.com/'
-        },
-        {
-          logo: '/logos/safa.jpg',
-          title: 'South Africa Flameproof Associations',
-          url: 'http://www.saflameproof.org.za/'
-        },
-        {
-          logo: '/logos/sassda.png',
-          title: 'South Africa Stainless Steel Development Association',
-          url: 'https://sassda.co.za/'
-        },
-        {
-          logo: '/logos/saif.png',
-          title: 'South African Institute of Foundrymen',
-          url: 'http://www.foundries.org.za/'
-        },
-        {
-          logo: '/logos/SAPSDA.bmp',
-          title: 'South Africa Pump Systems Development Association',
-          url: 'https://www.sapsda.co.za/'
-        }
-      ]
+      heading: 'ASSOCIATIONS & AFFILIATES'
     }
   }
 }

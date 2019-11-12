@@ -1,7 +1,7 @@
 <template>
   <div>
     <AppHero :tagline="tagline" :slogan="slogan" />
-    <main>
+    <main v-editable="blok">
       <section class="profile">
         <AppSectionHeading :heading="heading" />
         <div class="about flex">
@@ -15,6 +15,7 @@
               <div class="img">
                 <h4 class="upper center">{{ img.image_title }}</h4>
                 <img :src="img.image" :alt="img.image_title" class="framed" />
+                <br />
               </div>
             </div>
           </div>
@@ -54,7 +55,7 @@
       <section class="news">
         <AppSectionHeading :heading="headingNews" />
         <p>
-          {{}}
+          {{ news_room.text }}
         </p>
         <a
           href="http://www.miningweekly.com/page/press-office-home/company:hazleton-pumps-2017-01-31"
@@ -119,6 +120,7 @@ export default {
         /* eslint-disable */
         console.log(response.data)
         return {
+          blok: response.data.story.content.body,
           intro_paragraph: [
             response.data.story.content.body[0],
             response.data.story.content.body[1]
@@ -143,6 +145,17 @@ export default {
           message: res.response.data
         })
       })
+  },
+  mounted() {
+    this.$storybridge.on(['input', 'published', 'change'], event => {
+      if (event.action === 'input') {
+        if (event.story.id === this.story.id) {
+          this.story.content = event.story.content
+        }
+      } else {
+        window.location.reload()
+      }
+    })
   }
 }
 </script>
