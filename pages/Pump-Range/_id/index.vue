@@ -1,5 +1,5 @@
 <template>
-  <div v-if="pump">
+  <div v-if="pump" v-editable="blok">
     <AppHero :tagline="pump.hero[0].tagline" :slogan="pump.hero[0].slogan" />
     <main>
       <AppSectionHeading :heading="pump.title" />
@@ -132,6 +132,7 @@ export default {
         /* eslint-disable */
         console.log(response.data)
         return {
+          blok: response.data.story.content,
           pump: response.data.story.content
         }
       })
@@ -140,6 +141,17 @@ export default {
     id() {
       return titleCase(this.$route.params.id)
     }
+  },
+  mounted() {
+    this.$storybridge.on(['input', 'published', 'change'], event => {
+      if (event.action == 'input') {
+        if (event.story.id === this.story.id) {
+          this.story.content = event.story.content
+        }
+      } else {
+        window.location.reload()
+      }
+    })
   }
 }
 </script>
