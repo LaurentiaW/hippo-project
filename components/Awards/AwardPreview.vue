@@ -14,7 +14,7 @@
         <h4 class="truncate upper">{{ award.content.title }}</h4>
       </li>
       <li class="truncate">{{ award.content.institution }}</li>
-      <li class="truncate">{{ award.content.date }}</li>
+      <li class="truncate">{{ award.content.date.slice(0, 10) }}</li>
     </ul>
   </div>
 </template>

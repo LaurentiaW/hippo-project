@@ -19,7 +19,7 @@
             <h4 class="upper">{{ award.content.title }}</h4>
           </li>
           <li>{{ award.content.institution }}</li>
-          <li>{{ award.content.date }}</li>
+          <li>{{ award.content.date.slice(0, 10) }}</li>
         </ul>
       </div>
     </div>

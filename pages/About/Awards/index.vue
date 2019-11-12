@@ -6,8 +6,9 @@
         <AppSectionHeading :heading="heading" />
         <div v-if="awards" class="grid">
           <AwardPreview
-            v-for="award in awards"
+            v-for="award in awardEntries"
             :key="award.id"
+            v-editable="blok"
             :award="award"
             @awardSelect="onAwardSelect"
           />
@@ -59,6 +60,11 @@ export default {
       selectedAwardIsPortrait: false
     }
   },
+  computed: {
+    awardEntries() {
+      return this.awards.filter(award => award.content.component === 'award')
+    }
+  },
   asyncData(context) {
     return context.app.$storyapi
       .get('cdn/stories', {
@@ -69,6 +75,7 @@ export default {
         /* eslint-disable */
         console.log(response)
         return {
+          blok: response.data.stories,
           awards: response.data.stories
         }
       })
@@ -79,6 +86,17 @@ export default {
       this.displayAward = true
       this.selectedAwardIsPortrait = isPortrait
     }
+  },
+  mounted() {
+    this.$storybridge.on(['input', 'published', 'change'], event => {
+      if (event.action == 'input') {
+        if (event.story.id === this.story.id) {
+          this.story.content = event.story.content
+        }
+      } else {
+        window.location.reload()
+      }
+    })
   }
 }
 </script>
