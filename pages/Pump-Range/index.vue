@@ -85,8 +85,6 @@ export default {
         starts_with: 'pump-range/'
       })
       .then(response => {
-        /* eslint-disable */
-        console.log(response)
         return {
           pumps: response.data.stories.map(pump => {
             return {

@@ -87,8 +87,8 @@ export default {
         console.log(response.data)
         return {
           //   blok: response.data.story.content.body,
-          pump_range: response.data.story.content.body[0],
-          pump_system: response.data.story.content.body[1],
+          pump_range: response.data.story.content.body[1],
+          pump_system: response.data.story.content.body[0],
           boxes: [
             response.data.story.content.body[2],
             response.data.story.content.body[3],

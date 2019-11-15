@@ -21,7 +21,7 @@ export default {
     AppSectionHeading
   },
   props: {
-    associations: Object
+    associations: Array
   },
   data() {
     return {

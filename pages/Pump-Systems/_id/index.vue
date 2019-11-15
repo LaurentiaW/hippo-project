@@ -1,6 +1,9 @@
 <template>
-  <div>
-    <AppHero :tagline="pumpSystem.tagline" :slogan="pumpSystem.slogan" />
+  <div v-if="pumpSystem">
+    <AppHero
+      :tagline="pumpSystem.hero[0].tagline"
+      :slogan="pumpSystem.hero[0].slogan"
+    />
     <main>
       <AppSectionHeading :heading="pumpSystem.title" />
       <div class="product-grid">
@@ -23,44 +26,55 @@
           </ul>
         </div>
         <div class="additional-content">
-          <div v-if="pumpSystem.limitations" class="limitations section">
+          <div v-if="pumpSystem.Limitations" class="limitations section">
             <h4>Limitations of {{ pumpSystem.title }}</h4>
             <ul>
-              <li v-for="(limitation, i) in pumpSystem.limitations" :key="i">
-                {{ limitation }}
+              <li v-for="(limitation, i) in pumpSystem.Limitations" :key="i">
+                {{ limitation.text }}
               </li>
             </ul>
           </div>
-          <div v-if="pumpSystem.duty" class="duty section">
-            <AppSectionHeading
-              :heading="`${dutyTitle} of the ${pumpSystem.title}`"
-            />
-            <img
-              :src="pumpSystem.duty.img"
-              :alt="`Duties achieved by the ${pumpSystem.title}'`"
-            />
-            {{ pumpSystem.duty.text }}
-          </div>
-          <div v-if="pumpSystem.pumpData" class="pump-data section">
-            <AppSectionHeading :heading="pumpData" />
-            <img
-              :src="pumpSystem.pumpData.img"
-              :alt="`Pump Data of the ${pumpSystem.title}`"
-            />
-          </div>
-          <div v-if="pumpSystem.controlPanel" class="control-panel section">
+          <hr />
+          <section>
+            <div v-if="pumpSystem.duty" class="duty section">
+              <AppSectionHeading
+                :heading="`${dutyTitle} of the ${pumpSystem.title}`"
+              />
+              <img
+                :src="pumpSystem.duty[0].image"
+                :alt="
+                  `Duties achieved by the ${pumpSystem.duty[0].image_title}`
+                "
+                :title="
+                  `Duties achieved by the ${pumpSystem.duty[0].image_title}`
+                "
+              />
+              {{ pumpSystem.duty[0].text }}
+            </div>
+            <div v-if="pumpSystem.pumpData" class="pump-data section">
+              <AppSectionHeading :heading="pumpData" />
+              <img
+                :src="pumpSystem.pumpData.img"
+                :alt="`Pump Data of the ${pumpSystem.title}`"
+              />
+            </div>
+          </section>
+          <section
+            v-if="pumpSystem.control_panel"
+            class="control-panel section"
+          >
             <AppSectionHeading :heading="controlPanel" />
             <img
-              :src="pumpSystem.controlPanel.img"
+              :src="pumpSystem.control_panel.img"
               :alt="`Control Panel of the ${pumpSystem.title}`"
             />
             <ul>
-              <li v-for="(item, i) in pumpSystem.controlPanel.items" :key="i">
-                <h4>{{ i + 1 }}. {{ item.title }}</h4>
+              <li v-for="item in pumpSystem.control_panel" :key="item.id">
+                <h4>{{ item.id }}. {{ item.item }}</h4>
                 <p>{{ item.description }}</p>
               </li>
             </ul>
-          </div>
+          </section>
         </div>
       </div>
     </main>
@@ -97,48 +111,48 @@ export default {
       titleCase,
       dutyTitle: 'Duty',
       pumpData: 'Pump Data',
-      controlPanel: 'Control Panel',
-      pumpSystem: {
-        title: 'High Head Series Submersible Pumping System',
-        tagline: 'High Head Series',
-        slogan: 'The Problem Solver',
-        id: 'high-head-series-submersible-pumping-system',
-        objective:
-          'To pump liquid containing solids at a high head using several submersible pumps in series',
-        summary: 'Mine dewatering, in particular shaft bottom dewatering',
-        duty: {
-          img:
-            'https://hazletonpumps.co.za/wp-content/uploads/2017/08/medium-4p-50hz.jpg',
-          text:
-            'Maximum head and volume is determined by the access area available to lower the submersible pump down to shaft bottom. Standard volumes up to 200l/s with the stage head(HS) of 200m can be achieved'
-        },
-        components: [
-          {
-            id: '1',
-            item:
-              'Hippo Submersible Slurry Pumps - as many as required to achieve the volumes required'
-          },
-          {
-            id: '2',
-            item:
-              'Interstage Inlet can be provided between stages to accommodate the pumping of liquid at any level provided that non-return valves ()are installed'
-          }
-        ],
-        options: '',
-        'pump-data': '',
-        'control-panel': '',
-        limitations: [
-          'The weight - determined by the capacity of lifting equipment',
-          'The area available to lower the pumps',
-          'Total power available'
-        ]
-      }
+      controlPanel: 'Control Panel'
     }
+  },
+  // computed: {
+  //   controlPanelItems() {
+  //     return this.pumpSystem.control_panel.filter(
+  //       item => item.component === 'component'
+  //     )
+  //   }
+  // },
+  asyncData(context) {
+    const version =
+      context.query._storyblok || context.isDev ? 'draft' : 'published'
+
+    return context.app.$storyapi
+      .get('cdn/stories/pump-systems/' + context.params.id, {
+        version
+      })
+      .then(response => {
+        /* eslint-disable */
+        console.log(response.data)
+        return {
+          blok: response.data.story.content,
+          pumpSystem: response.data.story.content
+        }
+      })
   },
   computed: {
     id() {
       return titleCase(this.$route.params.id)
     }
+  },
+  mounted() {
+    this.$storybridge.on(['input', 'published', 'change'], event => {
+      if (event.action == 'input') {
+        if (event.story.id === this.story.id) {
+          this.story.content = event.story.content
+        }
+      } else {
+        window.location.reload()
+      }
+    })
   }
 }
 </script>

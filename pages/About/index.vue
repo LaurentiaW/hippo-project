@@ -121,10 +121,7 @@ export default {
         console.log(response.data)
         return {
           blok: response.data.story.content.body,
-          intro_paragraph: [
-            response.data.story.content.body[0],
-            response.data.story.content.body[1]
-          ],
+          intro_paragraph: [response.data.story.content.body[0]],
           intro_images: [
             response.data.story.content.body[2],
             response.data.story.content.body[3]
