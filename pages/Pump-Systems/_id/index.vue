@@ -65,8 +65,9 @@
           >
             <AppSectionHeading :heading="controlPanel" />
             <img
-              :src="pumpSystem.control_panel.img"
+              :src="pumpSystem.control_panel[6].image"
               :alt="`Control Panel of the ${pumpSystem.title}`"
+              :title="`Control Panel of the ${pumpSystem.title}`"
             />
             <ul>
               <li v-for="item in pumpSystem.control_panel" :key="item.id">
